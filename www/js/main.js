@@ -19,31 +19,29 @@ $(document).ready(function(e) {
          }
     });
 	
-$("#btnGetCamara").click(function(e){
-	e.stopPropagation();
-	navigate.camera.getPicture(cameraSuccess, cameraError, {
-		quality:50,
-		destinationType : Camera.DestionationType.FILE_URI,
-		sourceType.Camera.PictureSourceType.CAMERA,
-		allowEdit:true,
-		encodingType: Camera.EncodingType.JPEG,
-		saveToPhotoAlbum: true
-			
+	$("#btnGetCamara").click(function(e){
+		e.stopPropagation();
+		navigator.camera.getPicture(cameraSuccess, cameraError, {
+			quality:50,
+			destinationType : Camera.DestionationType.FILE_URI,
+			sourceType.Camera.PictureSourceType.CAMERA,
+			allowEdit:true,
+			encodingType: Camera.EncodingType.JPEG,
+			saveToPhotoAlbum: true		
+		});
 	});
-});
 	
-$("#btnGetLibrary").click(function(e){
-	e.stopPropagation();
-	navigate.camera.getPicture(cameraSuccess, cameraError, {
-		quality:50,
-		destinationType : Camera.DestionationType.FILE_URI,
-		sourceType.Camera.PictureSourceType.PHOTOLIBRARY,
-		allowEdit:true,
-		encodingType: Camera.EncodingType.JPEG,
-		saveToPhotoAlbum: true
-			
+	$("#btnGetLibrary").click(function(e){
+		e.stopPropagation();
+		navigator.camera.getPicture(cameraSuccess, cameraError, {
+			quality:50,
+			destinationType : Camera.DestionationType.FILE_URI,
+			sourceType.Camera.PictureSourceType.PHOTOLIBRARY,
+			allowEdit:true,
+			encodingType: Camera.EncodingType.JPEG,
+			saveToPhotoAlbum: true			
+		});
 	});
-});
 });
 
 function guardaReg(){
@@ -145,6 +143,7 @@ function exitTermAcces(){
     removeItemReg();
     window.location.href ="#acceso";
 }
+
 function removeItemReg(){
     sessionStorage.removeItem("Email");
     sessionStorage.removeItem("Clave");
@@ -154,7 +153,6 @@ function removeItemReg(){
     sessionStorage.removeItem("Cel");
 }
 
-    
 function cameraSuccess(imageURL){
 	$("#fotoEdit_img").attr("src", imageURL);
 	$.imageURL = imageURL;
