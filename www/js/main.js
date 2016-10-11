@@ -19,7 +19,7 @@ $(document).ready(function(e) {
          }
     });
 	
-	$("#btnGetCamara").click(function(e){
+	/**$("#btnGetCamara").click(function(e){
 		e.stopPropagation();
 		navigator.camera.getPicture(cameraSuccess, cameraError, {
 			quality:50,
@@ -41,7 +41,12 @@ $(document).ready(function(e) {
 			encodingType: Camera.EncodingType.JPEG,
 			saveToPhotoAlbum: true			
 		});
+	});**/
+	
+	$("#btnGetCamara").click(function(e){
+		alert("puta prueba de mierda");
 	});
+	
 });
 
 function guardaReg(){
@@ -87,6 +92,7 @@ function guardaTerm(){
     alert(sessionStorage.getItem("Terminos"));
     window.location.href ="#privacidad";
 }
+
 function guardaPriv(){
     var email2 = sessionStorage.getItem("Email");
     var clave2 = sessionStorage.getItem("Clave");
@@ -156,7 +162,6 @@ function removeItemReg(){
 function cameraSuccess(imageURL){
 	$("#fotoEdit_img").attr("src", imageURL);
 	$.imageURL = imageURL;
-	$("#li_"+$.id).find("img").attr("src", $.imageURL)
 	$("#cameraMenu").popup("close");
 };
 	
