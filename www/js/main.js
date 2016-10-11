@@ -20,6 +20,7 @@ $(document).ready(function(e) {
     });
 	
 	$("#btnGetCamara").click(function(e){
+		alert(“btnGetCamara”);
 		e.stopPropagation();
 		navigator.camera.getPicture(cameraSuccess, cameraError, {
 			quality: 50,
@@ -33,6 +34,7 @@ $(document).ready(function(e) {
 	
 	$("#btnGetLibrary").click(function(e){
 		e.stopPropagation();
+		alert(“btnGetLibrary”);
 		navigator.camera.getPicture(cameraSuccess, cameraError, {
 			quality:50,
 			destinationType : Camera.DestinationType.FILE_URI,
