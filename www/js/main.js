@@ -29,7 +29,7 @@ $(document).ready(function(e) {
 			encodingType: Camera.EncodingType.JPEG,
 			saveToPhotoAlbum: true		
 		});
-	});
+	}); 
 	
 	$("#btnGetLibrary").click(function(e){
 		e.stopPropagation();
