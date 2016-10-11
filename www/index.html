@@ -4,11 +4,13 @@
     <title>Servicios p&uacute;blicos</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css"/>
-    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <!--<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
     <script type="text/javascript" charset="utf-8" src="./js/main.js"></script>
 </head>
 <body>
+
 <!--Acceso-->
 <div data-role="page" id="acceso" data-theme="c">
     <div data-role="header" data-theme="d">
@@ -37,6 +39,7 @@
         </div>
     </div>
 </div>
+
 <!--Contacto-->
 <div data-role="page" id="contacto" data-theme="c">
     <div data-role="header" data-theme="d">
@@ -64,6 +67,7 @@
         </div>
     </div>
 </div>
+
 <!--Logeo de usuario-->
 <div data-role="page" id="login" data-theme="c">
     <div data-role="header" data-theme="d">
@@ -92,10 +96,12 @@
             <a href="#recupera" data-role="link" data-theme="c" data-inline="true">&iquest;Olvidaste
                 tu contrase&ntilde;a?</a>
             <br>
-            <button id="button_login" data-theme="c" style="width: 160px;">Entrar</button>
+            <!--<button id="button_login" data-theme="c" style="width: 160px;">Entrar</button>-->
+            <button id="button_login" onclick="prueba()" data-theme="c" style="width: 160px;">Entrar</button>
         </div>
     </div>
 </div>
+
 <!--Recupera Contrase&ntilde;a-->
 <div data-role="page" id="recupera" data-theme="c">
     <div data-role="header" data-theme="d">
@@ -125,6 +131,7 @@
         </div>
     </div>
 </div>
+
 <!-- Registro -->
 <div data-role="page" id="registro" data-theme="c">
     <div data-role="header" data-theme="d">
@@ -154,11 +161,12 @@
             <label for="text-Cel">* Celular (10 digitos):</label>
             <input name="text-basic" id="text-Cel" value="" type="text" size="10" maxlength="10" required>
             <div align="center">
-                <button id="button_validaReg" data-theme="c" style="width: 160px;">Siguiente</button>
+                <button id="button_validaReg" onclick="guardaReg()" data-theme="c" style="width: 160px;">Siguiente</button>
             </div>
         </form>
     </div>
 </div>
+
 <!-- Terminos y condiciones -->
 <div data-role="page" id="terminos" style="background-color: #ffffff;">
     <div data-role="header" data-theme="d">
@@ -224,12 +232,14 @@
         </p>
 
         <div data-inline="true" align="center">
-            <button id="button_ExitTerm" data-theme="c" style="width: 160px;">Salir</button>
+            <!--<button id="button_ExitTerm" data-theme="c" style="width: 160px;">Salir</button>-->
+            <a href="javascript: exitTermAcces();" data-role="button" data-theme="c" data-inline="true" style="width: 160px;">Salir</a>
             <!--<a href="#acceso" data-role="button" data-theme="c" data-inline="true">Salir</a>-->
-            <a href="#privacidad" data-role="button" data-theme="c" data-inline="true">Aceptar</a>
+            <a href="javascript: guardaTerm();" data-role="button" data-theme="c" data-inline="true" style="width: 160px;">Aceptar</a>
         </div>
     </div>
 </div>
+
 <!-- Aviso de privacidad -->
 <div data-role="page" id="privacidad" style="background-color: #ffffff;">
     <div data-role="header" data-theme="d">
@@ -253,11 +263,12 @@
         </p>
 
         <div data-inline="true" align="center">
-            <a href="#acceso" data-role="button" data-theme="c" data-inline="true">Salir</a>
-            <a href="#activar" data-role="button" data-theme="c" data-inline="true">Aceptar</a>
+            <a href="javascript: exitTermAcces();" data-role="button" data-theme="c" data-inline="true" style="width: 160px;">Salir</a>
+            <a href="javascript: guardaPriv();" data-role="button" data-theme="c" data-inline="true" style="width: 160px;">Aceptar</a>
         </div>
     </div>
 </div>
+
 <!-- Activar usuario -->
 <div data-role="page" id="activar">
     <div data-role="header" data-theme="d">
@@ -281,6 +292,7 @@
         </div>
     </div>
 </div>
+
 <!-- P&aacute;gina principal -->
 <div data-role="page" id="sos">
     <div data-role="header" data-theme="d">
@@ -308,6 +320,7 @@
         </ul>
     </div>
 </div>
+
 <div data-role="page" id="principal">
     <div data-role="header" data-theme="d">
         <table>
@@ -341,49 +354,80 @@
         </ul>
     </div>
 </div>
+
 <!-- Selector de servicios -->
-<div data-role="page" id="servicios">
-    <div data-role="header" data-theme="d">
-        <table>
-            <tr>
-                <td><img src="img/logo_bco.png" width="55"
-                         style="margin-left: 15px; margin-top: 5px"/></td>
-                <td><p style="margin-left: 10px;">Servicios p&uacute;blicos</p></td>
-            </tr>
-        </table>
-    </div>
-    <div data-role="content">
-        <form>
-            <div class="ui-field-contain">
-                <select name="select-servicios" id="select-native-1">
-                    <option value="1">Alumbrado</option>
-                    <option value="2">Aguas y alcantarillas</option>
-                    <option value="3">Obras p&uacute;blicas</option>
-                    <option value="4">Servicios p&uacute;blicos</option>
-                </select>
-            </div>
+	<div data-role="page" id="servicios">
+		<div data-role="header" data-theme="d">
+			<table>
+				<tr>
+					<td><img src="img/logo_bco.png" width="55"
+							 style="margin-left: 15px; margin-top: 5px"/></td>
+					<td><p style="margin-left: 10px;">Servicios p&uacute;blicos</p></td>
+				</tr>
+			</table>
+		</div>
+		<br><br>
 
+		<div data-role="title">
+			<td><p style="text-align:center; color: #FF0000; font-size: 20px">Servicios</p></td>
+		</div>
+		
+		<div data-role="content">
+			<form>
+				<div>
+					<select name="select-servicios" id="select-native-1" >
+						<option value="0">Seleccionar Servicio</option>
+						<option value="1">Alumbrado</option>
+						<option value="2">Aguas y alcantarillado</option>
+						<option value="3">Obras p&uacute;blicas</option>
+						<option value="4">Servicios p&uacute;blicos</option>
+					</select>
+				</div>
+				<br/>
+				<div >
+					<select name="select-servicios" id="select-native-2">
+						<option value="0">Seleccionar Servicio</option>
+					</select>
+				</div>
+				
+				<div style="align:right">
+					<textarea id="textArea" name="textArea" style="resize:none; height:300px"></textarea>
+				</div>
+				<br/>
+				
+				<div style=" margin-left:600px;">
+					<div data-role="title">
+						<td><p style="text-align:left; color: #FF0000; font-size: 20px">Tomar Fotos</p></td>
+					</div>
+				</div>
 
-            <!-- este selector debe ser llenado seg&uacute;n el servicio que se selecciono -->
-            <div class="ui-field-contain">
-                <select name="select-subservicios" id="select-native-2">
-                    <option value="1">Fuga de agua</option>
-                    <option value="2">Falta de agua</option>
-                    <option value="3">Robo coladera o mantenimiento</option>
-                    <option value="4">Desasolve</option>
-                    <option value="4">Pipa de agua</option>
-                </select>
-            </div>
-        </form>
+				
+				<div id="fotoEdit" align="center" >
+					<a href="#camaraMenu" data-transition="pop" data-rel="popup">
+						<img id="fotoEdit_img" src="img/camera.png" height="100" width="100">
+					</a>
+				</div>
+					
+				<div data-role="popup" id="camaraMenu" data-theme="b">
+					<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+					<h3>La foto de ... </h3>
+					<div data-role="controlgroup" data-type="vertical">
+						<button id="btnGetCamara"> C&aacute;mara </button>
+						<button id="btnGetLibrary"> Librer&iacute;a </button>
+					</div>
+				</div>
+				
+				<br/><br/>
 
-        <a href="#alumbrado" data-role="button">Alumbrado</a>
-        <a href="#aguas" data-role="button">Aguas y alcantarillados</a>
-        <a href="#obras" data-role="button">Obras p&uacute;blicas</a>
-        <a href="#publicos" data-role="button">Servicios p&uacute;blicos</a>
-        <a href="#sos" data-role="button" data-inline="true">Cancelar</a>
-    </div>
-
-</div>
+				<div data-inline="true" align="center">
+					<button id="btnCancelar" data-theme="c" style="width:160px">Cancelar</button>
+					<button id="btnEnviar" data-theme="c"  style="width:160px">Enviar</button>
+				</div>
+			</form>
+		</div>
+		
+	</div>
+	
 <!-- P&aacute;gina de alumbrado -->
 <div data-role="page" id="alumbrado">
     <div data-role="header" data-theme="d">
