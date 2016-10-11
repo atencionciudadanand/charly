@@ -22,10 +22,10 @@ $(document).ready(function(e) {
 	$("#btnGetCamara").click(function(e){
 		e.stopPropagation();
 		navigator.camera.getPicture(cameraSuccess, cameraError, {
-			quality:50,
-			destinationType : Camera.DestionationType.FILE_URI,
-			sourceType.Camera.PictureSourceType.CAMERA,
-			allowEdit:true,
+			quality: 50,
+			destinationType : Camera.DestinationType.FILE_URI,
+			sourceType: Camera.PictureSourceType.CAMERA,
+			allowEdit: true,
 			encodingType: Camera.EncodingType.JPEG,
 			saveToPhotoAlbum: true		
 		});
@@ -35,9 +35,9 @@ $(document).ready(function(e) {
 		e.stopPropagation();
 		navigator.camera.getPicture(cameraSuccess, cameraError, {
 			quality:50,
-			destinationType : Camera.DestionationType.FILE_URI,
-			sourceType.Camera.PictureSourceType.PHOTOLIBRARY,
-			allowEdit:true,
+			destinationType : Camera.DestinationType.FILE_URI,
+			sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+			allowEdit: true,
 			encodingType: Camera.EncodingType.JPEG,
 			saveToPhotoAlbum: true			
 		});
