@@ -1,49 +1,35 @@
 // JavaScript Document
-$(document).ready(function(e) {
+var camera = {
+	initialize: function() {
+		this.bindEvents();
+	},
 	
-	/**$("#btnGetCamara").click(function(e){
-		alert(“btnGetCamara”);
-		e.stopPropagation();
-		navigator.camera.getPicture(cameraSuccess, cameraError, {
-			quality: 50,
-			destinationType : Camera.DestinationType.FILE_URI,
-			sourceType: Camera.PictureSourceType.CAMERA,
-			allowEdit: true,
-			encodingType: Camera.EncodingType.JPEG,
-			saveToPhotoAlbum: true		
-		});
-	}); 
+	bindEvents: function() {
+		var takePhoto = document.getElementById('takePhoto');
+        var sendPhoto = document.getElementById('sendPhoto');
+		takePhoto.addEventListener('click', camera.takePhoto, false);
+		sendPhoto.addEventListener('click', camera.sendPhoto, false);
+    },
 	
-	$("#btnGetLibrary").click(function(e){
-		e.stopPropagation();
-		alert(“btnGetLibrary”);
-		navigator.camera.getPicture(cameraSuccess, cameraError, {
-			quality:50,
-			destinationType : Camera.DestinationType.FILE_URI,
-			sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-			allowEdit: true,
-			encodingType: Camera.EncodingType.JPEG,
-			saveToPhotoAlbum: true			
-		});
-	});**/
-	
-	$("#btnGetCamara").click(function(e){
-		alert("puta prueba de mierda");
-		navigator.camera.getPicture(cameraSuccess, cameraError, {
+	takePhoto: function(){
+		navigator.camera.getPicture(camera.onPhotoDataSuccess, camera.onFail, {
 			quality: 20, 
             allowEdit: true, 
 			destinationType: navigator.camera.DestinationType.DATA_URL 
 		});
-	});
-	
-});
+	},
+ 
+	onPhotoDataSuccess: function(imageData) {
+		var photo = document.getElementById('fotoEdit_img');
+		photo.src = "data:image/jpeg;base64," + imageData;
+	},
+ 
+    onFail: function(message) {
+		alert('Failed because: ' + message);
+	},
 
-function cameraSuccess(imageURL){
-	$("#fotoEdit_img").attr("src", imageURL);
-	$.imageURL = imageURL;
-	$("#cameraMenu").popup("close");
-};
+	sendPhoto: function() {
+		alert('Imagen enviada al servidor');
+	}
 	
-function cameraError(msg){
-	navigator.notification.alert("Error capturando foto: " + msg)
-}
+};
