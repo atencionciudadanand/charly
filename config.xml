@@ -40,4 +40,12 @@
         <allow-intent href="itms:*"/>
         <allow-intent href="itms-apps:*"/>
     </platform>
+<<<<<<< HEAD
 </widget>
+=======
+    
+    <feature name="Camera">
+        <param name="android-package" value="org.apache.cordova.camera.CameraLauncher" />
+    </feature>
+</widget>
+>>>>>>> f52741e721e8f49268e13b02ae62d6df884ed523
