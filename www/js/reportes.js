@@ -17,6 +17,7 @@ var app = {
           },
  
           takePhoto: function(){
+			  alert('pppp');
               navigator.camera.getPicture(app.onPhotoDataSuccess, app.onFail, { quality: 20, 
                   allowEdit: true, destinationType: navigator.camera.DestinationType.DATA_URL });
           },
