@@ -25,37 +25,27 @@ var app = {
 	},
  
     onPhotoDataSuccess: function(imageData) {
-		var photo = "";
 		var val = 0;
 		if(document.getElementById('fotoEdit_img1')){
 			val = 1;
+			var photo = document.getElementById('fotoEdit_img1');
+			$("#fotoEdit_img1").attr("src", imageData);
+			alert("val: " + val);
 		}else if(document.getElementById('fotoEdit_img2')){
 			val = 2;
+			var photo = document.getElementById('fotoEdit_img2');
+			$("#fotoEdit_img2").attr("src", imageData);
+			alert("val: " + val);
 		}else if(document.getElementById('fotoEdit_img3')){
 			val = 3;
+			var photo = document.getElementById('fotoEdit_img3');
+			$("#fotoEdit_img3").attr("src", imageData);
+			alert("val: " + val);
 		}else if(document.getElementById('fotoEdit_img4')){
 			val = 4;
-		}
-		
-		if(!val == 0){
-			switch(val){
-				case 1: 
-					photo = document.getElementById('fotoEdit_img1');
-					$("#fotoEdit_img1").attr("src", imageData);
-					break;
-				case 2: 
-					photo = document.getElementById('fotoEdit_img2');
-					$("#fotoEdit_img2").attr("src", imageData);
-					break;
-				case 3: 
-					photo = document.getElementById('fotoEdit_img3');
-					$("#fotoEdit_img3").attr("src", imageData);
-					break;
-				case 4: 
-					photo = document.getElementById('fotoEdit_img4');
-					$("#fotoEdit_img4").attr("src", imageData);
-					break;
-			}
+			var photo = document.getElementById('fotoEdit_img4');
+			$("#fotoEdit_img4").attr("src", imageData);
+			alert("val: " + val);
 		}
     },
  
