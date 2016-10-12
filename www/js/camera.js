@@ -1,34 +1,41 @@
 // JavaScript Document
-var cam = {
-	initialize: function() {
-		this.bindEvents();
-	},
+var app = {
 	
-	bindEvents: function() {
-		var takePhoto = document.getElementById('btnGetCamara');
-		takePhoto.addEventListener('click', cam.takePhoto, false);
-    },
-	
-	takePhoto: function(){
-		navigator.camera.getPicture(cam.onPhotoDataSuccess, cam.onFail, {
-			quality: 20, 
-			destinationType: navigator.camera.DestinationType.DATA_URL ,
-            allowEdit: true
-			
-		});
-	},
+          initialize: function() {
+              this.bindEvents();
+          },
+         
+          bindEvents: function() {
+              var takePhoto = document.getElementById('takePhoto');
+              takePhoto.addEventListener('click', app.takePhoto, false);
+              var sendPhoto = document.getElementById('sendPhoto');
+              sendPhoto.addEventListener('click', app.sendPhoto, false);
+          },
  
-	onPhotoDataSuccess: function(imageData) {
-		var photo = document.getElementById('fotoEdit_img');
-		photo.src = "data:image/jpeg;base64," + imageData;
-	},
+          sendPhoto: function() {
+              alert('Imagen enviada al servidor');
+          },
  
-    onFail: function(message) {
-		alert('Failed because: ' + message);
-	},
-
-	sendPhoto: function() {
-		alert('Imagen enviada al servidor');
-	}
-	
-};
+          takePhoto: function(){
+              navigator.camera.getPicture(app.onPhotoDataSuccess, app.onFail, { quality: 20, 
+                  allowEdit: true, destinationType: navigator.camera.DestinationType.DATA_URL });
+          },
+ 
+          onPhotoDataSuccess: function(imageData) {
+         
+            var photo = document.getElementById('photo');
+ 
+            photo.style.display = 'block';
+ 
+            photo.src = "data:image/jpeg;base64," + imageData;
+ 
+            var sendPhoto = document.getElementById('sendPhoto');
+            sendPhoto.style.display = 'block';
+            
+          },
+ 
+          onFail: function(message) {
+            alert('Failed because: ' + message);
+          }
+ 
+      };
