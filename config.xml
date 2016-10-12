@@ -1,8 +1,8 @@
 <widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="mx.com.negocios-digitales" version="1.0.0">
     <name>atencionCiudadana_charly_</name>
-    <description>Hello World sample application that responds to the deviceready event.</description>
+    <description>Pruebas Charly</description>
     <author href="http://www.negocios-digitales.com.mx" email="marco.demetrio@negocios-digitales.com.mx">PhoneGap Team</author>
-    <content src="reportes.html"/>
+    <content src="index.html"/>
     <preference name="DisallowOverscroll" value="true"/>
     <preference name="android-minSdkVersion" value="14"/>    
     <plugin name="cordova-plugin-battery-status" source="npm" spec="~1.1.1"/>
