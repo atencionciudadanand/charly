@@ -5,17 +5,16 @@ var cam = {
 	},
 	
 	bindEvents: function() {
-		var takePhoto = document.getElementById('takePhoto');
-        var sendPhoto = document.getElementById('sendPhoto');
+		var takePhoto = document.getElementById('btnGetCamara');
 		takePhoto.addEventListener('click', cam.takePhoto, false);
-		sendPhoto.addEventListener('click', cam.sendPhoto, false);
     },
 	
 	takePhoto: function(){
 		navigator.camera.getPicture(cam.onPhotoDataSuccess, cam.onFail, {
 			quality: 20, 
-            allowEdit: true, 
-			destinationType: navigator.camera.DestinationType.DATA_URL 
+			destinationType: navigator.camera.DestinationType.DATA_URL ,
+            allowEdit: true
+			
 		});
 	},
  
