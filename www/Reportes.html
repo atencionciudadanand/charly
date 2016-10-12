@@ -14,27 +14,30 @@
 		
 	</head>
 	
-	 <body>
-	 
-	 
-	<!-- Selector de servicios -->
-	<div data-role="page" id="servicios">				
-				<div style=" margin-left:600px;">
-					<div data-role="title">
-						<td><p style="text-align:left; color: #FF0000; font-size: 20px">Tomar Fotos</p></td>
-					</div>
+	<body>
+		 
+		 
+		<!-- Selector de servicios -->
+		<div data-role="page" id="servicios">				
+			<div style=" margin-left:600px;">
+				<div data-role="title">
+					<td><p style="text-align:left; color: #FF0000; font-size: 20px">Tomar Fotos</p></td>
 				</div>
+			</div>
 
-				<div id="fotoEdit" align="center" >
-					<img id="fotoEdit_img" src="img/camera.png" height="100" width="100">
-					<div data-inline="true" align="center">
-						<button id="btnGetCamara" data-theme="c" style="width: 160px;">C&aacute;mara</button>
-					</div>
-				</div>
-				
-				<br/><br/>
-			</form>
+			<div id="fotoEdit" style="margin.top: 100px" align="center" >
+				<img id="fotoEdit_img" src="img/camera.png" height="100" width="100">
+				<br>
+				<button id="btnGetCamara" data-theme="c" style="width: 160px;">C&aacute;mara</button>
+			</div>
+					
+			<div id="content" style="margin-top: 100px;">
+					<button id="takePhoto">TOMAR FOTO</button>
+					<img id="photo" src=""/>
+					<button id="sendPhoto">ENVIAR FOTO</button>
+			</div>
+				  
+			<br/><br/>
 		</div>
-	</div>
 	</body>	
 </html>
