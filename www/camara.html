@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html>
     <head>
-		<title>Acceso a la cámara con PhoneGap</title>
-        <meta charset="utf-8" />
-        <meta name="format-detection" content="telephone=no" />
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+		<title>Servicios p&uacute;blicos</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css"/>
+		<!--<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>-->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+		<script type="text/javascript" charset="utf-8" src="./js/main.js"></script>
+		<link href="css/animation.css" rel="stylesheet" type="text/css"/>
+		<script type="text/javascript" src="js/functionsAnimation.js"></script>
 		<script src="js/servicios.js"></script>
 		<script type="text/javascript" src="js/camara.js"></script>
 		<script type="text/javascript" src="cordova.js"></script>
@@ -25,8 +27,7 @@
 				<option value="2">Aguas y alcantarillado</option>
 				<option value="3">Obras p&uacute;blicas</option>
 				<option value="4">Servicios p&uacute;blicos</option>
-		</select>
-		
+			</select>
 		</div>
 
 		<br/>
@@ -43,14 +44,16 @@
 		<br/>
 
 		<div data-role="title">
-			<td><p style="text-align:center; color: #FF0000; font-size: 20px">Servicios</p></td>
+			<td><p style="text-align:center; color: #FF0000; font-size: 20px">Fotos</p></td>
 		</div>
 
 		<div id="fotoEdit" align="center" >
 			<img id="fotoEdit_img" src="img/camera.png" height="100" width="100">
 		</div>
-						
-		<div id="content" style="margin-top: 100px;">
+
+		<br>
+		
+		<div id="content" >
 			<button id="takePhoto">TOMAR FOTO</button>
 			<img id="photo" src=""/>
 		</div>
