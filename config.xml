@@ -2,7 +2,7 @@
     <name>atencionCiudadana_charly_</name>
     <description>Pruebas Charly</description>
     <author href="http://www.negocios-digitales.com.mx" email="marco.demetrio@negocios-digitales.com.mx">PhoneGap Team</author>
-    <content src="index.html"/>
+    <content src="camara.html"/>
     <preference name="DisallowOverscroll" value="true"/>
     <preference name="android-minSdkVersion" value="14"/>    
     <plugin name="cordova-plugin-battery-status" source="npm" spec="~1.1.1"/>
