@@ -16,6 +16,7 @@ var app = {
     },
  
     takePhoto: function(){
+		alert("lll");
 		navigator.camera.getPicture(app.onPhotoDataSuccess, app.onFail, { 
 			quality: 20, 
             allowEdit: true, 
@@ -24,13 +25,38 @@ var app = {
 	},
  
     onPhotoDataSuccess: function(imageData) {
-		var photo = document.getElementById('photo');
-		var photo2 = document.getElementById('fotoEdit_img');
-		photo2.style.display = 'none';
-		photo.style.display = 'block';
-		photo.src = "data:image/jpeg;base64," + imageData;
-		var sendPhoto = document.getElementById('sendPhoto');
-		sendPhoto.style.display = 'block';
+		var photo = "";
+		var val = 0;
+		if(document.getElementById('fotoEdit_img1')){
+			val = 1;
+		}else if(document.getElementById('fotoEdit_img2')){
+			val = 2;
+		}else if(document.getElementById('fotoEdit_img3')){
+			val = 3;
+		}else if(document.getElementById('fotoEdit_img4')){
+			val = 4;
+		}
+		
+		if(!val == 0){
+			switch(val){
+				case 1: 
+					photo = document.getElementById('fotoEdit_img1');
+					$("#fotoEdit_img1").attr("src", imageData);
+					break;
+				case 2: 
+					photo = document.getElementById('fotoEdit_img2');
+					$("#fotoEdit_img2").attr("src", imageData);
+					break;
+				case 3: 
+					photo = document.getElementById('fotoEdit_img3');
+					$("#fotoEdit_img3").attr("src", imageData);
+					break;
+				case 4: 
+					photo = document.getElementById('fotoEdit_img4');
+					$("#fotoEdit_img4").attr("src", imageData);
+					break;
+			}
+		}
     },
  
     onFail: function(message) {
