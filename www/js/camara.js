@@ -16,9 +16,11 @@ var app = {
           },
  
           takePhoto: function(){
-			  alert("lll");
-              navigator.camera.getPicture(app.onPhotoDataSuccess, app.onFail, { quality: 20, 
-                  allowEdit: true, destinationType: navigator.camera.DestinationType.DATA_URL });
+            navigator.camera.getPicture(app.onPhotoDataSuccess, app.onFail, { 
+				quality: 20,
+				destinationType: navigator.camera.DestinationType.DATA_URL,
+				allowEdit: true
+				});
           },
  
           onPhotoDataSuccess: function(imageData) {
