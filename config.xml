@@ -2,7 +2,7 @@
     <name>Prueba de atención ciudadana</name>
     <description>El Charly Charly</description>
     <author href="http://www.negocios-digitales.com.mx" email="marco.demetrio@negocios-digitales.com.mx">PhoneGap Team</author>
-    <content src="geo.html"/>
+    <content src="index.html"/>
     <preference name="DisallowOverscroll" value="true"/>
     <preference name="android-minSdkVersion" value="14"/>    
     <plugin name="cordova-plugin-battery-status" source="npm" spec="~1.1.1"/>
