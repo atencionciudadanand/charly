@@ -20,8 +20,6 @@ $(document).ready(function(e) {
              alert("Error: Los campos con * son obligatorios.");
          }
     });
-	
-	geo();
 });
 
 function guardaReg(){
