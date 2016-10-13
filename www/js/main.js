@@ -135,7 +135,6 @@ function removeItemReg(){
 
 function addClassImagePhoto(e){
 		alert("addClassImagePhoto");
-		e.classList.add("prueba");
 		imageCameraClicked=e;
 }
 
