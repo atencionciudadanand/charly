@@ -1,4 +1,6 @@
 // JavaScript Document
+var imageCameraClicked;
+
 $(document).ready(function(e) {
     $("#button_login").click(function(e) {
          var usuario = $("#text-CorreoLogin").val();
@@ -129,6 +131,12 @@ function removeItemReg(){
     sessionStorage.removeItem("ApellidoP");
     sessionStorage.removeItem("ApellidoM");
     sessionStorage.removeItem("Cel");
+}
+
+function addClassImagePhoto(e){
+		alert("addClassImagePhoto");
+		e.classList.add("prueba");
+		imageCameraClicked=e;
 }
 
 /*function prueba(){
