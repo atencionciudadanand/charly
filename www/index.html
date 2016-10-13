@@ -378,20 +378,13 @@
 			</div>
 			<div data-role="content">
 					<div align="center">
-						<select name="select-servicios" id="selServicios" data-inline="true" >
-							<option value="0">Seleccionar Servicio</option>
-							<option value="1">Alumbrado</option>
-							<option value="2">Aguas y alcantarillado</option>
-							<option value="3">Obras p&uacute;blicas</option>
-							<option value="4">Servicios p&uacute;blicos</option>
+						<select name="select-servicios" id="selServicios" data-inline="true" onchange="getIdSelect(this)"> 
 						</select>
 					</div>
 					<!-- este selector debe ser llenado seg&uacute;n el servicio que se selecciono -->
 					<br/>
 					<div align="center">
-						<select name="select-fallas" id="selFallas" data-inline="true" >
-							<option value="0">Seleccionar Servicio</option>
-						</select>
+						<select name="select-fallas" id="selFallas" data-inline="true" > </select>
 					</div>		
 					<!-- cuadro de texto para ingresar el detalle del reporte -->
 					<div style="align:right">
