@@ -5,7 +5,14 @@ var app = {
     },
          
     bindEvents: function() {
-		var takePhoto = document.getElementById('takePhoto');
+		alert("jj");
+		var takePhoto = document.getElementById('takePhoto1');
+        takePhoto.addEventListener('click', app.takePhoto, false);
+		var takePhoto = document.getElementById('takePhoto2');
+        takePhoto.addEventListener('click', app.takePhoto, false);
+		var takePhoto = document.getElementById('takePhoto3');
+        takePhoto.addEventListener('click', app.takePhoto, false);
+		var takePhoto = document.getElementById('takePhoto4');
         takePhoto.addEventListener('click', app.takePhoto, false);
         var sendPhoto = document.getElementById('sendPhoto');
         sendPhoto.addEventListener('click', app.sendPhoto, false);
@@ -26,6 +33,7 @@ var app = {
  
     onPhotoDataSuccess: function(imageData) {
 		var val = 0;
+		alert("val: " + val);
 		if(document.getElementById('fotoEdit_img1')){
 			val = 1;
 			var photo = document.getElementById('fotoEdit_img1');
@@ -47,6 +55,7 @@ var app = {
 			$("#fotoEdit_img4").attr("src", imageData);
 			alert("val: " + val);
 		}
+		alert("val: " + val);
     },
  
     onFail: function(message) {
