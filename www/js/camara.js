@@ -1,3 +1,5 @@
+var miVariable;
+
 var app = {
  
     initialize: function() {
@@ -6,16 +8,10 @@ var app = {
          
     bindEvents: function() {
 		alert("jj");
-		var takePhoto = document.getElementById('takePhoto1');
-        takePhoto.addEventListener('click', app.takePhoto, false);
-		var takePhoto = document.getElementById('takePhoto2');
-        takePhoto.addEventListener('click', app.takePhoto, false);
-		var takePhoto = document.getElementById('takePhoto3');
-        takePhoto.addEventListener('click', app.takePhoto, false);
-		var takePhoto = document.getElementById('takePhoto4');
+		alert("%%%" + this.id);
+		miVariable = this;
         takePhoto.addEventListener('click', app.takePhoto, false);
         var sendPhoto = document.getElementById('sendPhoto');
-        sendPhoto.addEventListener('click', app.sendPhoto, false);
 	},
  
     sendPhoto: function() {
@@ -32,30 +28,8 @@ var app = {
 	},
  
     onPhotoDataSuccess: function(imageData) {
-		var val = 0;
-		alert("val: " + val);
-		if(document.getElementById('fotoEdit_img1')){
-			val = 1;
-			var photo = document.getElementById('fotoEdit_img1');
-			$("#fotoEdit_img1").attr("src", imageData);
-			alert("val: " + val);
-		}else if(document.getElementById('fotoEdit_img2')){
-			val = 2;
-			var photo = document.getElementById('fotoEdit_img2');
-			$("#fotoEdit_img2").attr("src", imageData);
-			alert("val: " + val);
-		}else if(document.getElementById('fotoEdit_img3')){
-			val = 3;
-			var photo = document.getElementById('fotoEdit_img3');
-			$("#fotoEdit_img3").attr("src", imageData);
-			alert("val: " + val);
-		}else if(document.getElementById('fotoEdit_img4')){
-			val = 4;
-			var photo = document.getElementById('fotoEdit_img4');
-			$("#fotoEdit_img4").attr("src", imageData);
-			alert("val: " + val);
-		}
-		alert("val: " + val);
+		alert ("$$$" + miVariable.id);
+
     },
  
     onFail: function(message) {
