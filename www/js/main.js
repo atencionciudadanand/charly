@@ -21,6 +21,7 @@ $(document).ready(function(e) {
          }
     });
 	
+	geo();
 });
 
 function guardaReg(){
