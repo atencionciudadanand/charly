@@ -14,16 +14,13 @@ function getServices(){
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (data) {
-        	i=0;
-        	var obj = $.parseJSON(data);
-            $.each(obj, function(key, value){
-            	$("#selServicios").append("<option value='" + obj[i].servicioId + "'>" + obj[i].descripcion + "</option>");
-			});
-
+        	for(var i = 0; i<data.length; i++){
+        		$("#selServicios").append("<option value='" + data[i].servicioId + "'>" + data[i].descripcion + "</option>");
+        	}
         },
 
         error: function () {
-            alert("Error: getServices.");
+            alert("Error: Algo fallo y no se que fue.");
         }
 	})
 
@@ -31,7 +28,7 @@ function getServices(){
 }
 
 function getIdSelect(v){
-	valueSelectService=v.servicioId;
+	valueSelectService=v.value;
 	getFails(valueSelectService);
 }
 
@@ -42,14 +39,14 @@ function getFails(v) {
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (data) {
-        	var obj = $.parseJSON(data);
-            $.each(obj, function(key, value){
-            	$("#selServicios").append("<option value='" + obj[i].servicioId + "'>" + obj[i].descripcion + "</option>");
-			});
+			for(var i = 0; i<data.length; i++){
+        		$("#selFallas").append("<option value='" + data[i].servicioId + "'>" + data[i].descripcion + "</option>");
+        	}
         },
 
+
         error: function () {
-            alert("Error: getFails.");
+            alert("Error: Algo fallo y no se que fue.");
         }
 	})
 }
