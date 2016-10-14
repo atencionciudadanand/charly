@@ -16,17 +16,15 @@ var app = {
     },
  
     takePhoto: function(){
-		alert("takePhoto");
 		navigator.camera.getPicture(app.onPhotoDataSuccess, app.onFail, { 
 			quality: 20, 
+			allowEdit: true,
 			destinationType: navigator.camera.DestinationType.DATA_URL,
-            allowEdit: true, 
 			saveToPhotoAlbum: true
 		});
 	},
  
     onPhotoDataSuccess: function(imageData) {
-		var val = 0;
 		$(imageCameraClicked).attr("src", imageData);
     },
  

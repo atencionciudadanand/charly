@@ -133,7 +133,6 @@ function removeItemReg(){
 }
 
 function addClassImagePhoto(e){
-		alert("addClassImagePhoto");
 		imageCameraClicked=e;
 }
 
