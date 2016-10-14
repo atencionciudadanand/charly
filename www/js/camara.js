@@ -6,7 +6,7 @@ var app = {
          
     bindEvents: function() {
 		var takePhoto = document.getElementById('takePhoto');
-        takePhoto.addEventListener('click', app.takePhoto, false);
+        takePhoto.addEventListener('onclick', app.takePhoto, false);
         var sendPhoto = document.getElementById('sendPhoto');
         sendPhoto.addEventListener('click', app.sendPhoto, false);
 	},
