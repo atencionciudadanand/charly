@@ -20,7 +20,7 @@ function getServices(){
         },
 
         error: function () {
-            alert("Error: Algo fallo y no se que fue.");
+            alert("Error: No se cargaron los servicios correctamente.");
         }
 	})
 
@@ -46,7 +46,7 @@ function getFails(v) {
 
 
         error: function () {
-            alert("Error: Algo fallo y no se que fue.");
+            alert("Error: No se cargaron las fallas correctamente.");
         }
 	})
 }
