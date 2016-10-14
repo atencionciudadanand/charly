@@ -8,7 +8,7 @@ var app = {
 		var takePhoto = document.getElementById('takePhoto');
         takePhoto.addEventListener('click', app.takePhoto, false);
         var sendPhoto = document.getElementById('sendPhoto');
-        sendPhoto.addEventListener('click', app.sendPhoto, false);
+        sendPhoto.addEventListener('click', app.sendPhoto, false);		
 	},
  
     sendPhoto: function() {
