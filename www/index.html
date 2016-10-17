@@ -388,7 +388,6 @@
         <a href="#servicios" data-role="button" data-inline="true">Continuar</a>
     </div>
 </div>
-
 <!-- Selector de servicios -->
 <div data-role="page" id="servicios">
     <div data-role="header" data-theme="d">
@@ -478,7 +477,9 @@
     </div>
     <div data-role="footer">
         <ul data-role="listview">
-            <li><a href="#paginaMapa" data>Servicios</a></li>
+            <li>
+				<a id="lnkServicios" href="#paginaMapa" data-role="link" data-theme="c" data-inline="true" onclick="showBtnGeo();">Servicios</a>
+			</li>
             <li>
                 <a href="javascript: cargaReportes();">Mis reportes</a>
             </li>
@@ -514,5 +515,6 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">app.initialize();</script>
 </body>
 </html>

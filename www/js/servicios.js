@@ -21,7 +21,6 @@ function getServices(){
 
         error: function () {
             alert("Error: No se cargaron los servicios correctamente.");
-			console.dialog("Error: No se cargaron los servicios correctamente.");
         }
 	})
 

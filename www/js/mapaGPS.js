@@ -1,5 +1,4 @@
 function showBtnGeo(){
-	alert("HHHH");
 	document.getElementById('btnGeo').style.display = 'block';
 }
 
