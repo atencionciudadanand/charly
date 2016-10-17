@@ -19,13 +19,16 @@ var app = {
 		navigator.camera.getPicture(app.onPhotoDataSuccess, app.onFail, { 
 			quality: 20, 
 			allowEdit: true,
-			destinationType: navigator.camera.DestinationType.DATA_URL,
-			saveToPhotoAlbum: true
+			destinationType: navigator.camera.DestinationType.DATA_URL
 		});
 	},
  
     onPhotoDataSuccess: function(imageData) {
-		$(imageCameraClicked).attr("src", imageData);
+		//$(imageCameraClicked).attr("src", imageData);
+		
+		var photo = document.getElementById('fotoEdit_img1');
+        //photo.style.display = 'block';
+		photo.src = "data:image/jpeg;base64," + imageData;
     },
  
     onFail: function(message) {
