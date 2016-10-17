@@ -214,9 +214,9 @@ function mostrarReportes(vlDatos){
 
 }
 
-function addClassImagePhoto(e){
-		imageCameraClicked=e;
-}
+	function addClassImagePhoto(e){
+		imageCameraClicked = e;
+	}
 
 /*
                 var folio = data[0].rpcFolioReporte;
