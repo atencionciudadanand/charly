@@ -216,6 +216,7 @@ function mostrarReportes(vlDatos){
 }
 
 function addClassImagePhoto(e){
+	alert("lklkl");
 		imageCameraClicked=e;
 }
 

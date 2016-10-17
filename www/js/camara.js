@@ -16,6 +16,7 @@ var app = {
     },
  
     takePhoto: function(){
+		alert("ggg");
 		navigator.camera.getPicture(app.onPhotoDataSuccess, app.onFail, { 
 			quality: 20, 
 			allowEdit: true,
