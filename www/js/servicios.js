@@ -7,7 +7,7 @@ $(document).ready(function() {
 
 
 function getServices(){
-	
+	//url:"http://192.168.15.104:8080/WSAtnCiu/getServicios",
 	$.ajax({
 		url:"http://192.168.15.104:8080/WSAtnCiu/getServicios",
 		type:"GET",
@@ -33,6 +33,7 @@ function getIdSelect(v){
 }
 
 function getFails(v) {
+		//url:"http://192.168.15.104:8080/WSAtnCiu/getFallas/" + v,
 		$.ajax({
 		url:"http://192.168.15.104:8080/WSAtnCiu/getFallas/" + v,
 		type:"GET",
