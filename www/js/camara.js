@@ -12,7 +12,7 @@ var app = {
 	},
  
     sendPhoto: function() {
-		alert('Imagen enviada al servidor');
+		alert('Reporte Enviado... ');
     },
  
     takePhoto: function(){
@@ -29,19 +29,15 @@ var app = {
 		//$(imageCameraClicked).attr("src", imageData);
 		var photo;
 		if(imageCameraClicked == 1){
-			alert("value: " + imageCameraClicked)
 			photo = document.getElementById('fotoEdit_img1');
 			photo.src = "data:image/jpeg;base64," + imageData;
 		}else if (imageCameraClicked == 2){
-			alert("value: " + imageCameraClicked)
 			photo = document.getElementById('fotoEdit_img2');
 			photo.src = "data:image/jpeg;base64," + imageData;
 		}else if(imageCameraClicked == 3){
-			alert("value: " + imageCameraClicked)
 			photo = document.getElementById('fotoEdit_img3');
 			photo.src = "data:image/jpeg;base64," + imageData;
 		}else if(imageCameraClicked == 4){
-			alert("value: " + imageCameraClicked)
 			photo = document.getElementById('fotoEdit_img4');
 			photo.src = "data:image/jpeg;base64," + imageData;
 		}
