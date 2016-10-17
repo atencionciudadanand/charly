@@ -19,7 +19,9 @@ var app = {
 		navigator.camera.getPicture(app.onPhotoDataSuccess, app.onFail, { 
 			quality: 20, 
 			allowEdit: true,
-			destinationType: navigator.camera.DestinationType.DATA_URL
+			destinationType: navigator.camera.DestinationType.DATA_URL,
+			encodingType: navigator.camera.EncodingType.JPEG,
+			saveToPhotoAlbum:true
 		});
 	},
  
