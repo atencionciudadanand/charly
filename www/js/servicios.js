@@ -7,9 +7,9 @@ $(document).ready(function() {
 
 
 function getServices(){
-	//url:"http://192.168.15.104:8080/WSAtnCiu/getServicios",
+	//url:"http://192.168.15.106:8080/WSAtnCiu/getServicios",
 	$.ajax({
-		url:"http://192.168.15.104:8080/WSAtnCiu/getServicios",
+		url:"http://192.168.15.106:8080/WSAtnCiu/getServicios",
 		type:"GET",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
@@ -21,6 +21,7 @@ function getServices(){
 
         error: function () {
             alert("Error: No se cargaron los servicios correctamente.");
+			console.dialog("Error: No se cargaron los servicios correctamente.");
         }
 	})
 
@@ -33,9 +34,9 @@ function getIdSelect(v){
 }
 
 function getFails(v) {
-		//url:"http://192.168.15.104:8080/WSAtnCiu/getFallas/" + v,
+		//url:"http://192.168.15.106:8080/WSAtnCiu/getFallas/" + v,
 		$.ajax({
-		url:"http://192.168.15.104:8080/WSAtnCiu/getFallas/" + v,
+		url:"http://192.168.15.106:8080/WSAtnCiu/getFallas/" + v,
 		type:"GET",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
@@ -45,9 +46,8 @@ function getFails(v) {
         	}
         },
 
-
         error: function () {
-            alert("Error: No se cargaron las fallas correctamente.");
+			console.dialog("Error: No se cargaron las fallas correctamente.");
         }
 	})
 }
