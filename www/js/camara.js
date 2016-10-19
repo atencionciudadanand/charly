@@ -10,7 +10,7 @@ var app = {
 	},
  
     sendPhoto: function() {
-		alert('Imagen enviada al servidor');
+		alert('Reporte Enviado... ');
     },
  
     takePhoto: function(){
@@ -18,7 +18,8 @@ var app = {
 			quality: 20, 
 			allowEdit: true,
 			destinationType: navigator.camera.DestinationType.DATA_URL,
-			saveToPhotoAlbum: true
+			encodingType: navigator.camera.EncodingType.JPEG,
+			saveToPhotoAlbum:true
 		});
 	},
  

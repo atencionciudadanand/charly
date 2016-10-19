@@ -12,7 +12,6 @@ $( document ).on( "pageinit", "#paginaMapa", function(e,data) {
 		}
         function falla(error) {
             //si falla mostrar mpara en posicion por defecto
-                alert('Error en servicio Geolocalizador');
                 MuestraMapa(defaultPos);
             }
 

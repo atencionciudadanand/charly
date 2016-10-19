@@ -28,6 +28,9 @@ function mostrar()
 
 function ocultar(e)
 {
+    var ambulancia = document.getElementById('ambulancia');
+	var policia = document.getElementById('policia');
+	var bomberos = document.getElementById('bomberos');
 	ambulancia.style.display = 'none';
 	policia.style.display = 'none';
 	bomberos.style.display = 'none';
@@ -41,8 +44,41 @@ function llamar(entidad)
 		break;
 		case 2: location.href='tel:5573461063';
 		break;
-		case 3: location.href='tel:';
+		case 3: location.href='tel:5523805851';
 		break;
 	}
+    mostrarBtnTerminarEmergencia();
 	location.href = '#paginaMapa';
+}
+
+function muestraMenu()
+{
+   var menu = null; 
+   menu = document.getElementsByName('desplegable');
+    console.log("length = " + menu.length);
+    console.log(menu);
+    for(var i = 0; menu.length > i; i++)
+    {
+        console.log("i = " + i);
+        console.log("menu");
+        console.log(menu[i]);
+        if(menu[i].style.display == 'block')
+        {
+            $(menu[i]).removeClass("desplegable");
+            menu[i].style.display = 'none';
+            $(menu[i]).addClass("desplegableR");
+        }
+        else
+        {
+            $(menu[i]).removeClass("desplegableR");
+            menu[i].style.display = 'block';
+            $(menu[i]).addClass("desplegable");
+        }
+    }
+}
+
+function ocultarMenu(e)
+{
+    var menu = document.getElementById('desplegable');
+    menu.style.display = none;
 }

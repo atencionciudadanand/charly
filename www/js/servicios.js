@@ -13,7 +13,6 @@ function showBtnGeo(value){
 }
 
 function getServices(){
-	//url:"http://192.168.15.106:8080/WSAtnCiu/getServicios",
 	$.ajax({
 		url:"http://189.210.245.211:7080/WSAtnCiu/getServicios",
 		type:"GET",
@@ -36,8 +35,7 @@ function getIdSelect(v){
 	getFails(valueSelectService);
 }
 
-function getFails(v) { 
-		//url:"http://192.168.15.106:8080/WSAtnCiu/getFallas/" + v,
+function getFails(v) {
 		$.ajax({
 		url:"http://189.210.245.211:7080/WSAtnCiu/getFallas/" + v,
 		type:"GET",
@@ -65,7 +63,7 @@ function sendReport(){
     var fechaAlt = padStr(fecha.getFullYear()) + "-" +
                   padStr(1 + fecha.getMonth()) + "-" +
                   padStr(fecha.getDate());
-	var descripcion = $$( "#textArea" ).val();
+	var descripcion = $( "#textArea" ).val();
 
     var contact = 	'{'+
 					'"rpcFolioReporte":"FOL001",'+
@@ -77,7 +75,7 @@ function sendReport(){
 					'"rpcFechaAlta":"'+ fechaAlt +'",'+
 					'"rpcUsuAlta":1,'+
 					'"rpcEstatus":1,'+
-					'"rpcDescripcion":'+descripcion+
+					'"rpcDescripcion":"'+descripcion+'"'+
 					'}';
 					
 	jQuery.ajax({

@@ -10,7 +10,7 @@ function validaLogin(){
             jQuery.ajax({
                 type: "GET",
                 contentType: "application/json; charset=utf-8",
-                url: "http://192.168.15.106:8080/WSAtnCiu/getUserByNameAndPass/" + flEmail + "/" + flPass,
+                url: "http://189.210.245.211:7080/WSAtnCiu/getUserByNameAndPass/" + flEmail + "/" + flPass,
                 dataType: "json",
                 success: function (data, jqXHR, status) {
                     console.log("data: " + data);
@@ -50,21 +50,43 @@ function guardaReg(){
         if(!re.exec(email))    {
             alert("Error: La dirección de correo " + email + " es incorrecta.");
         }else{
-            if (clave == claveConfirma){
-                if (clave.length == 6){
-                    sessionStorage.setItem("Email", email);
-                    sessionStorage.setItem("Clave", clave);
-                    sessionStorage.setItem("Nombre", nombreUser);
-                    sessionStorage.setItem("ApellidoP", aPaterno);
-                    sessionStorage.setItem("ApellidoM", aMaterno);
-                    sessionStorage.setItem("Cel", numCel);
-                    window.location.href ="#terminos";
-                } else{
-                    alert("Error: La contraseña debe tener al menos 6 caracteres");
+            jQuery.ajax({
+                type: "GET",
+                contentType: "application/json; charset=utf-8",
+                url: "http://189.210.245.211:7080/WSAtnCiu/getUserByEmail/" + email + "/",
+                dataType: "json",
+                success: function (data, jqXHR, status) {
+                    if(data == false){
+                        if (clave == claveConfirma){
+                            if (clave.length == 6){
+                                sessionStorage.setItem("Email", email);
+                                sessionStorage.setItem("Clave", clave);
+                                sessionStorage.setItem("Nombre", nombreUser);
+                                sessionStorage.setItem("ApellidoP", aPaterno);
+                                sessionStorage.setItem("ApellidoM", aMaterno);
+                                sessionStorage.setItem("Cel", numCel);
+                                window.location.href ="#terminos";
+                            } else{
+                                alert("Error: La contraseña debe tener al menos 6 caracteres");
+                            }
+                        }else{
+                            alert("Error: La contraseñas no son iguales.");
+                        }
+                    }else{
+                        alert("Error: El usuario ya se encuentra registrado");
+                        window.location.href ="#registro";
+                        window.location.reload();
+
+                    }
+                },
+                error: function (data, jqXHR, status) {
+                    alert("Error: No se obtubo respuesta del servidor. Favor de intentar mas tarde");
+                    window.location.href ="#acceso";
+                },
+                done: function (e) {
+                    console.log("DONE");
                 }
-            }else{
-                alert("Error: La contraseñas no son iguales.");
-            }
+            });
         }
     }else {
         alert("Error: Los campos con * son obligatorios.");
@@ -99,7 +121,6 @@ function guardaPriv(){
         '"telefono":'+numCel2+','+
         '"email":"'+email2+'",'+
         '"estatusSesion":'+0+','+
-        '"fechaUlSe":"1985-12-07",'+
         '"contrasenia":"'+clave2+'",'+
         '"fechaAlta":"'+fechaAlt+'",'+
         '"fechaModif":"'+fechaAlt+'",'+
@@ -113,7 +134,7 @@ function guardaPriv(){
     jQuery.ajax({
         type: "POST",
         contentType: "application/json; charset=utf-8",
-        url: "http://192.168.15.106:8080/WSAtnCiu/addUsuario",
+        url: "http://189.210.245.211:7080/WSAtnCiu/addUsuario",
         data: contact.toString(),
         dataType: "json",
         success: function (data, status, jqXHR) {
@@ -143,6 +164,7 @@ function exitTermAcces(){
 function exitReportes(obj){
     removeItemReg(1,1);
     window.location.href ="#home";
+    window.location.reload();
 }
 
 function removeItemReg(idRegistro,idCReportes){
@@ -165,7 +187,7 @@ function cargaReportes(){
     jQuery.ajax({
             type: "GET",
             contentType: "application/json; charset=utf-8",
-            url: "http://192.168.15.106:8080/WSAtnCiu/getRelPerSerByIdUser/" + idUser,
+            url: "http://189.210.245.211:7080/WSAtnCiu/getRelPerSerByIdUser/" + idUser,
             data: js.toString(),
             dataType: "json",
             success: function (data, jqXHR, status) {
@@ -215,7 +237,13 @@ function mostrarReportes(vlDatos){
 }
 
 function addClassImagePhoto(e){
-		imageCameraClicked=e;
+    imageCameraClicked=e;
+}
+
+function logOut(){
+    removeItemReg(1,1);
+    window.location.href ="#acceso";
+    window.location.reload();
 }
 
 /*
@@ -270,3 +298,14 @@ function borrar(){
         }
     });
 }*/
+function mostrarBtnTerminarEmergencia()
+{
+    //alert("entro al js");
+    document.getElementById('terminarEmergencia').style.display = "inline";
+}
+
+function refrescarHome()
+{
+    location.href = "#home";
+    location.reload();
+}
