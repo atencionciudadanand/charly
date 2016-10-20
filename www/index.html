@@ -47,9 +47,6 @@
             <br/>
             <h5>&iquest;No puedes iniciar sesi&oacute;n?</h5>
             <a href="#contacto" data-role="link" data-theme="c" data-inline="true">Cont&aacute;ctanos</a>
-            <br/>
-            <h5>Servicios</h5>
-            <a href="#paginaMapa" data-role="link" data-theme="c" data-inline="true" onclick="showBtnGeo(1);">Servicios</a>
         </div>
     </div>
 </div>
@@ -369,7 +366,7 @@
     <div id="map-canvas"></div>
 
     <div id="btnGeo" align="center">
-        <a href="#servicios" data-role="button" data-inline="true">Continuar</a>
+        <a href="#servicios" data-role="button" data-inline="true" onclick="location.reload();">Continuar</a>
     </div>
     <div id="terminarEmergencia" align="center">
        <a href="" data-role="button" onclick="refrescarHome()">Terminar Emergencia</a>
@@ -383,12 +380,12 @@
         </label>
             <div name="desplegable"  class="desplegable">
                 <ul>
-                    <li><a href="#paginaMapa" onclick="showBtnGeo();muestraMenu();">Servicios</a></li>
-                    <li><a href="javascript: cargaReportes();" onclick="muestraMenu()">Mis reportes</a></li>
-                    <li><a href="" onclick="muestraMenu()">Instrucciones</a></li>
-                    <li><a href="#terminos" onclick="muestraMenu()">T&eacute;rminos y condiciones</a></li>
-                    <li><a href="#privacidad" onclick="muestraMenu()">Ley de protecci&oacute;n de datos personales</a></li>
-                    <li><a href="javascript: logOut();" onclick="muestraMenu()">Cerrar Sesi&oacute;n</a></li>
+                    <li><a href="#paginaMapa" onclick="showBtnGeo();ocultarMenuArray();">Servicios</a></li>
+                    <li><a href="javascript: cargaReportes();" onclick="()">Mis reportes</a></li>
+                    <li><a href="" onclick="ocultarMenuArray()">Instrucciones</a></li>
+                    <li><a href="#terminos" onclick="ocultarMenuArray()">T&eacute;rminos y condiciones</a></li>
+                    <li><a href="#privacidad" onclick="ocultarMenuArray()">Ley de protecci&oacute;n de datos personales</a></li>
+                    <li><a href="javascript: logOut();" onclick="ocultarMenuArray()">Cerrar Sesi&oacute;n</a></li>
                 </ul>
             </div>
         <table>
@@ -463,12 +460,12 @@
         </label>
             <div name = "desplegable" class="desplegable">
                 <ul>
-                    <li><a href="#paginaMapa" onclick="showBtnGeo();muestraMenu();">Servicios</a></li>
-                    <li><a href="javascript: cargaReportes();" onclick="muestraMenu()">Mis reportes</a></li>
-                    <li><a href="" onclick="muestraMenu()">Instrucciones</a></li>
-                    <li><a href="#terminos" onclick="muestraMenu()">T&eacute;rminos y condiciones</a></li>
-                    <li><a href="#privacidad" onclick="muestraMenu()">Ley de protecci&oacute;n de datos personales</a></li>
-                    <li><a href="javascript: logOut();" onclick="muestraMenu()">Cerrar Sesi&oacute;n</a></li>
+                    <li><a href="#paginaMapa" onclick="showBtnGeo();ocultarMenuArray();">Servicios</a></li>
+                    <li><a href="javascript: cargaReportes();" onclick="ocultarMenuArray()">Mis reportes</a></li>
+                    <li><a href="" onclick="ocultarMenuArray()">Instrucciones</a></li>
+                    <li><a href="#terminos" onclick="ocultarMenuArray()">T&eacute;rminos y condiciones</a></li>
+                    <li><a href="#privacidad" onclick="ocultarMenuArray()">Ley de protecci&oacute;n de datos personales</a></li>
+                    <li><a href="javascript: logOut();" onclick="ocultarMenuArray()">Cerrar Sesi&oacute;n</a></li>
                 </ul>
             </div>
         <table>
@@ -508,12 +505,12 @@
         </label>
             <div name = "desplegable" class="desplegable">
                 <ul>
-                    <li><a href="#paginaMapa" onclick="showBtnGeo();muestraMenu();">Servicios</a></li>
-                    <li><a href="javascript: cargaReportes();" onclick="muestraMenu()">Mis reportes</a></li>
-                    <li><a href="" onclick="muestraMenu()">Instrucciones</a></li>
-                    <li><a href="#terminos" onclick="muestraMenu()">T&eacute;rminos y condiciones</a></li>
-                    <li><a href="#privacidad" onclick="muestraMenu()">Ley de protecci&oacute;n de datos personales</a></li>
-                    <li><a href="javascript: logOut();" onclick="muestraMenu()">Cerrar Sesi&oacute;n</a></li>
+                    <li><a href="#paginaMapa" onclick="showBtnGeo();ocultarMenuArray();">Servicios</a></li>
+                    <li><a href="javascript: cargaReportes();" onclick="ocultarMenuArray()">Mis reportes</a></li>
+                    <li><a href="" onclick="ocultarMenuArray()">Instrucciones</a></li>
+                    <li><a href="#terminos" onclick="ocultarMenuArray()">T&eacute;rminos y condiciones</a></li>
+                    <li><a href="#privacidad" onclick="ocultarMenuArray()">Ley de protecci&oacute;n de datos personales</a></li>
+                    <li><a href="javascript: logOut();" onclick="ocultarMenuArray()">Cerrar Sesi&oacute;n</a></li>
                 </ul>
             </div>
         <table>

@@ -14,12 +14,13 @@ function validaLogin(){
                 dataType: "json",
                 success: function (data, jqXHR, status) {
                     console.log("data: " + data);
-                    if(data == true){
-                        alert("Exito: Acceso correcto");
-                        window.location.href ="#home";
+                    if(data == 0){
+                    alert("Error: El usuario o contraseña no es valido");
+                    window.location.href ="#login";
                     }else{
-                        alert("Error: El usuario o contraseña no es valido");
-                        window.location.href ="#login";
+                        alert("Exito: Acceso correcto");
+                        sessionStorage.setItem("IdUsuario", data);
+                        window.location.href ="#home";
                     }
                 },
                 error: function (data, jqXHR, status) {
@@ -183,7 +184,7 @@ function removeItemReg(idRegistro,idCReportes){
 
 function cargaReportes(){
     var js = '{"idUsuario": 2}';
-    var idUser = 2;
+    var idUser = sessionStorage.getItem("IdUsuario");
     jQuery.ajax({
             type: "GET",
             contentType: "application/json; charset=utf-8",
@@ -200,7 +201,7 @@ function cargaReportes(){
             error: function (data, jqXHR, status) {
                 alert("Error: No se obtubo respuesta del servidor.");
                 console.log("data: " + data);
-                window.location.href ="#principal";
+                window.location.href ="#home";
             },
             done: function (e) {
                 console.log("DONE");

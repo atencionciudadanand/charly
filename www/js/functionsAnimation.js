@@ -9,7 +9,6 @@ function mostrar()
 		$("#bomberos").removeClass("bomberos");
 		$("#policia").addClass("policiaR");
 		$("#bomberos").addClass("bomberosR");
-		
 		policia.addEventListener("animationend",ocultar,false);
 	}
 	else
@@ -55,21 +54,18 @@ function muestraMenu()
 {
    var menu = null; 
    menu = document.getElementsByName('desplegable');
-    console.log("length = " + menu.length);
-    console.log(menu);
-    for(var i = 0; menu.length > i; i++)
+    for(var i=0; menu.length > i; i++)
     {
-        console.log("i = " + i);
-        console.log("menu");
-        console.log(menu[i]);
         if(menu[i].style.display == 'block')
         {
             $(menu[i]).removeClass("desplegable");
-            menu[i].style.display = 'none';
             $(menu[i]).addClass("desplegableR");
+            menu[i].name = menu[i];
+            menu[i].addEventListener("animationend",ocultarMenu,false);
         }
         else
         {
+            menu[i].removeEventListener("animationend",ocultarMenu,false);
             $(menu[i]).removeClass("desplegableR");
             menu[i].style.display = 'block';
             $(menu[i]).addClass("desplegable");
@@ -77,8 +73,17 @@ function muestraMenu()
     }
 }
 
+function ocultarMenuArray()
+{
+    var menu = document.getElementsByName('desplegable');
+    menu.forEach(function (item, index)
+                {
+                    item.removeEventListener("animationend",ocultarMenu,false);
+                    item.style.display = 'none';
+                 });
+}
+
 function ocultarMenu(e)
 {
-    var menu = document.getElementById('desplegable');
-    menu.style.display = none;
+    e.target.style.display = 'none';
 }

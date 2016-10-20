@@ -35,7 +35,7 @@
     margin: 0;
     width: 50%;
     position: absolute;
-    top: -50%;
+    top: -500px;
     right: 0%;
     z-index: 100;
     background: #bbb;
@@ -62,6 +62,30 @@
 }
 
 .desplegable ul li a
+{
+    display: block;
+    padding: 5px 10px;
+    text-decoration: none;
+    color: #000000;
+    font-size: 15px
+}
+
+.desplegableR ul
+{
+    list-style: none;
+}
+
+.desplegableR ul li
+{
+    border-top: 1px solid #fff;
+}
+
+.desplegableR ul li:hover
+{
+    background: rgba(0,0,0,0.3);
+}
+
+.desplegableR ul li a
 {
     display: block;
     padding: 5px 10px;
@@ -116,8 +140,4 @@
 {
     from{right: 0%;top: 71px;}
     to{right: 0%;top: -500px;}
-}
-
-.css{
-	display:none;
 }
