@@ -14,13 +14,13 @@ function validaLogin(){
                 dataType: "json",
                 success: function (data, jqXHR, status) {
                     console.log("data: " + data);
-                    if(data == 0){
-                    alert("Error: El usuario o contraseña no es valido");
-                    window.location.href ="#login";
-                    }else{
+                    if(data != null){
                         alert("Exito: Acceso correcto");
-                        sessionStorage.setItem("IdUsuario", data);
+                        sessionStorage.setItem("IdUsuario", data.usuarioId);
                         window.location.href ="#home";
+                    }else{
+                        alert("Error: El usuario o contraseña no es valido");
+                        window.location.href ="#login";
                     }
                 },
                 error: function (data, jqXHR, status) {

@@ -1,5 +1,5 @@
 var valueSelectService;
-var alrtId;
+var alerId;
 
 $(document).ready(function() {
    $("#btnGeo").hide();
@@ -135,7 +135,8 @@ function sendReport(){
         success: function (data, status, jqXHR) {
             alert("Exito: Su reporte se a enviado correctamente");
             window.location.href ="#home";
-			alrtId = data.alertId;
+			alerId = data[0].alertId;
+			codificarIMGtoBase64();
         },
         error: function (data, jqXHR, status) {
 			alert("Error: intente de nuevo mas tarde");
@@ -170,7 +171,7 @@ function codificarIMGtoBase64(){
 			'"arcNombre":"Imagen 1",'+
 			'"arcTipoDocto":"JPG",'+
 			'"arcIdRelUsuCatServ":	{'+
-										'"rpcIdusucatser":33'+
+										'"rpcIdusucatser":'+alerId+
 									'},'+
 			'"arcFechaAlta":"2016-10-18",'+
 			'"arcUsuAlta":2,'+
@@ -185,21 +186,21 @@ function codificarIMGtoBase64(){
 			contentType: "application/json; charset=utf-8",
 			dataType: "json",
 			success: function (data, status, jqXHR) {
-				alert("success 1");
+				//success
 			},
 		
 			error: function (jqXHR, status) {            
-				// rest
+				//error
 			}
 		});
 	}
 	
 	if(imgOriginal != imgData1){
 		var contact = '{'+
-			'"arcNombre":"Imagen 1",'+
+			'"arcNombre":"Imagen 2",'+
 			'"arcTipoDocto":"JPG",'+
 			'"arcIdRelUsuCatServ":	{'+
-										'"rpcIdusucatser":33'+
+										'"rpcIdusucatser":'+alerId+
 									'},'+
 			'"arcFechaAlta":"2016-10-18",'+
 			'"arcUsuAlta":2,'+
@@ -214,11 +215,11 @@ function codificarIMGtoBase64(){
 			contentType: "application/json; charset=utf-8",
 			dataType: "json",
 			success: function (data, status, jqXHR) {
-				alert("success 2");
+				//success
 			},
 		
 			error: function (jqXHR, status) {            
-				// rest
+				//error
 			}
 		});
 	}
@@ -228,7 +229,7 @@ function codificarIMGtoBase64(){
 			'"arcNombre":"Imagen 1",'+
 			'"arcTipoDocto":"JPG",'+
 			'"arcIdRelUsuCatServ":	{'+
-										'"rpcIdusucatser":33'+
+										'"rpcIdusucatser":'+alerId+
 									'},'+
 			'"arcFechaAlta":"2016-10-18",'+
 			'"arcUsuAlta":2,'+
@@ -243,11 +244,11 @@ function codificarIMGtoBase64(){
 			contentType: "application/json; charset=utf-8",
 			dataType: "json",
 			success: function (data, status, jqXHR) {
-				alert("success 3");
+				//success
 			},
 		
 			error: function (jqXHR, status) {            
-				// rest
+				//error
 			}
 		});	
 	}
@@ -257,7 +258,7 @@ function codificarIMGtoBase64(){
 			'"arcNombre":"Imagen 1",'+
 			'"arcTipoDocto":"JPG",'+
 			'"arcIdRelUsuCatServ":	{'+
-										'"rpcIdusucatser":33'+
+										'"rpcIdusucatser":'+alerId+
 									'},'+
 			'"arcFechaAlta":"2016-10-18",'+
 			'"arcUsuAlta":2,'+
@@ -272,11 +273,11 @@ function codificarIMGtoBase64(){
 			contentType: "application/json; charset=utf-8",
 			dataType: "json",
 			success: function (data, status, jqXHR) {
-				alert("success 4");
+				//success
 			},
 		
 			error: function (jqXHR, status) {            
-				// rest
+				//error
 			}
 		});	
 	}
@@ -284,15 +285,11 @@ function codificarIMGtoBase64(){
 
 function getBase64Image(imgElem) {
 	// imgElem must be on the same server otherwise a cross-origin error will be thrown "SECURITY_ERR: DOM Exception 18"
-   var canvas = document.createElement("canvas");
-   canvas.width = imgElem.clientWidth;
-   canvas.height = imgElem.clientHeight;
-   var ctx = canvas.getContext("2d");
-   ctx.drawImage(imgElem, 0, 0);
-   var dataURL = canvas.toDataURL("image/png");
-   return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
-}
-	
-function padStr(i) {
-    return (i < 10) ? "0" + i : "" + i;
-}
+	   var canvas = document.createElement("canvas");
+	   canvas.width = imgElem.clientWidth;
+	   canvas.height = imgElem.clientHeight;
+	   var ctx = canvas.getContext("2d");
+	   ctx.drawImage(imgElem, 0, 0);
+	   var dataURL = canvas.toDataURL("image/png");
+	   return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+	}
