@@ -2,15 +2,13 @@
 <html>
 <head>
     <title>Servicios p&uacute;blicos</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta HTTP-EQUIV="Content-Type" content="text/html; charset=iso-8859-1"/>
     <link href="css/animation.css" rel="stylesheet" type="text/css"/>
     <link href="css/mapaGPS.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css"/>
     <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
-    <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
     <script type="text/javascript" charset="utf-8" src="./js/main.js"></script>
@@ -363,24 +361,22 @@
     <div data-role="header">
         <h1>Tu posici&oacute;n actual</h1>
     </div>
-    <div id="map-canvas"></div>
+    <div id="map-canvas"></div>-
 
-    <div id="btnGeo" align="center">
-        <a href="#servicios" data-role="button" data-inline="true" onclick="location.reload();">Continuar</a>
-    </div>
     <div id="terminarEmergencia" align="center">
        <a href="" data-role="button" onclick="refrescarHome()">Terminar Emergencia</a>
     </div>
 </div>
+
 <!-- Selector de servicios -->
-<div data-role="page" id="servicios">
+<div data-role="page" id="servicios" data-url="map-page">
     <div data-role="header" data-theme="d">
        <label class="menuDesp" onclick="muestraMenu()">
            <img src="img/bullet_black.png" style="width:50px; height:50px;"/>
         </label>
             <div name="desplegable"  class="desplegable">
                 <ul>
-                    <li><a href="#paginaMapa" onclick="showBtnGeo();ocultarMenuArray();">Servicios</a></li>
+                    <li><a href="#servicios" onclick="showBtnGeo();ocultarMenuArray();">Servicios</a></li>
                     <li><a href="javascript: cargaReportes();" onclick="()">Mis reportes</a></li>
                     <li><a href="" onclick="ocultarMenuArray()">Instrucciones</a></li>
                     <li><a href="#terminos" onclick="ocultarMenuArray()">T&eacute;rminos y condiciones</a></li>
@@ -396,61 +392,65 @@
             </tr>
         </table>
     </div>
-    <div data-role="content">
-        <div align="center">
-            <select name="select-servicios" id="selServicios" data-inline="true"
-                    onchange="getIdSelect(this)">
-                <option value="">Seleccione una opci&oacute;n</option>
-            </select>
-        </div>
-        <!-- este selector debe ser llenado seg&uacute;n el servicio que se selecciono -->
-        <br/>
-        <div align="center">
-            <select name="select-fallas" id="selFallas" data-inline="true">
-                <option value="">Seleccione una opci&oacute;n</option>
-            </select>
-        </div>
-        <!-- cuadro de texto para ingresar el detalle del reporte -->
-        <br/>
-        <div data-role="title">
-            <td><p style="text-align:center; color: #FF0000; font-size: 20px">Descripci&oacute;n</p></td>
-        </div>		
-        <div style="align:right">
-            <textarea id="textArea" name="textArea" style="resize:none; height:300px"
-                      data-inline="true"></textarea>
-        </div>
-        <br/>
-        <div data-role="title">
-            <td><p style="text-align:center; color: #FF0000; font-size: 20px">Fotos</p></td>
-        </div>
-        <!-- imagen que sera replazada por la foto que se tomo -->
-        <div id="fotoEdit" align="center">
-            <a id="takePhoto">
-                <img id="fotoEdit_img1" src="img/camera.png" height="50" width="50"
-                     data-inline="true" onclick="addClassImagePhoto(1)">
-                &nbsp;&nbsp;
-                <img id="fotoEdit_img2" src="img/camera.png" height="50" width="50"
-                     data-inline="true" onclick="addClassImagePhoto(2)">
-                &nbsp;&nbsp;
-                <img id="fotoEdit_img3" src="img/camera.png" height="50" width="50"
-                     data-inline="true" onclick="addClassImagePhoto(3)">
-                &nbsp;&nbsp;
-                <img id="fotoEdit_img4" src="img/camera.png" height="50" width="50"
-                     data-inline="true" onclick="addClassImagePhoto(4)">
-                &nbsp;&nbsp;
-            </a>
-        </div>
-        <br>
+	<div data-role="content">
+		<div align="center">
+			<select name="select-servicios" id="selServicios" data-inline="true" onchange="getIdSelect(this)">
+				<option value="">Seleccione una opci&oacute;n</option>
+			</select>
+		</div>
+		<!-- este selector debe ser llenado seg&uacute;n el servicio que se selecciono -->
+		<br/>
+		<div align="center">
+			<select name="select-fallas" id="selFallas" data-inline="true">
+				<option value="">Seleccione una opci&oacute;n</option>
+			</select>
+		</div>
 
-        <!-- botones de captura, cancelar y enviar -->
-        <br><br>
-        <div id="content" align="center">
-            <a href="#home" data-role="button" data-inline="true">Cancelar</a>
-			<a href="javascript: sendReport();" data-role="button" data-theme="c"data-inline="true" style="width: 160px;">Enviar Reporte</a>
-        </div>
-		<br><br>
-		
-    </div>
+		<!-- cuadro de texto para ingresar el detalle del reporte -->
+		<br/>
+		<div data-role="title">
+			<td><p style="text-align:center; color: #FF0000; font-size: 20px">Descripci&oacute;n</p></td>
+		</div>		
+		<div style="align:right">
+			<textarea id="textArea" name="textArea" style="resize:none; height:300px" data-inline="true"></textarea>
+		</div>
+		<br/>
+		<div data-role="title">
+			<td><p style="text-align:center; color: #FF0000; font-size: 20px">Fotos</p></td>
+		</div>
+		<!-- imagen que sera replazada por la foto que se tomo -->
+		<div id="fotoEdit" align="center">
+			<a id="takePhoto">
+				<img id="fotoEdit_img1" src="img/btn_ayuda_rojo.png" height="50" width="50" data-inline="true" onclick="addClassImagePhoto(1)">
+					&nbsp;&nbsp;
+				<img id="fotoEdit_img2" src="img/camera.png" height="50" width="50" data-inline="true" onclick="addClassImagePhoto(2)">
+					&nbsp;&nbsp;
+				<img id="fotoEdit_img3" src="img/camera.png" height="50" width="50" data-inline="true" onclick="addClassImagePhoto(3)">
+					&nbsp;&nbsp;
+				<img id="fotoEdit_img4" src="img/camera.png" height="50" width="50" data-inline="true" onclick="addClassImagePhoto(4)">
+					&nbsp;&nbsp;
+			</a>
+		</div>
+		<br/>
+		<div data-role="title">
+			<td><p style="text-align:center; color: #FF0000; font-size: 20px">Ubicaci&oacute;n</p></td>
+		</div>
+		<br/>
+		<div>
+			<div id="geoServicios" ></div>
+		</div>
+		<br/>
+	
+		<!-- botones de captura, cancelar y enviar -->
+		<div>
+			<br><br>
+			<div id="content" align="center">
+				<a href="#home" data-role="button" data-inline="true">Cancelar</a>
+				<a href="javascript: sendReport();" data-role="button" data-theme="c"data-inline="true" style="width: 160px;">Enviar Reporte</a>
+			</div>
+			<br><br>
+		</div>
+	</div>
 </div>
 <!-- P&aacute;gina del Home-->
 <div data-role="page" id="home">
@@ -460,7 +460,7 @@
         </label>
             <div name = "desplegable" class="desplegable">
                 <ul>
-                    <li><a href="#paginaMapa" onclick="showBtnGeo();ocultarMenuArray();">Servicios</a></li>
+                    <li><a href="#servicios" onclick="showBtnGeo();ocultarMenuArray();">Servicios</a></li>
                     <li><a href="javascript: cargaReportes();" onclick="ocultarMenuArray()">Mis reportes</a></li>
                     <li><a href="" onclick="ocultarMenuArray()">Instrucciones</a></li>
                     <li><a href="#terminos" onclick="ocultarMenuArray()">T&eacute;rminos y condiciones</a></li>
@@ -505,7 +505,7 @@
         </label>
             <div name = "desplegable" class="desplegable">
                 <ul>
-                    <li><a href="#paginaMapa" onclick="showBtnGeo();ocultarMenuArray();">Servicios</a></li>
+                    <li><a href="#servicios" onclick="showBtnGeo();ocultarMenuArray();">Servicios</a></li>
                     <li><a href="javascript: cargaReportes();" onclick="ocultarMenuArray()">Mis reportes</a></li>
                     <li><a href="" onclick="ocultarMenuArray()">Instrucciones</a></li>
                     <li><a href="#terminos" onclick="ocultarMenuArray()">T&eacute;rminos y condiciones</a></li>

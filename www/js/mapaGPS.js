@@ -1,7 +1,3 @@
-function showBtnGeo(){
-	document.getElementById('btnGeo').style.display = 'block';
-}
-
 $( document ).on( "pageinit", "#paginaMapa", function(e,data) {
 
     var defaultPos = new google.maps.LatLng(19.289168, -99.653440);

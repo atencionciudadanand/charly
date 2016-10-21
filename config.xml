@@ -2,7 +2,7 @@
     <name>atencionCiudadana</name>
     <description>App de atencion ciudadana creada por Negocios Digitales.</description>
     <author href="http://www.negocios-digitales.com.mx" email="marco.demetrio@negocios-digitales.com.mx">PhoneGap Team</author>
-    <content src="index.html"/>
+    <content src="prueba.html"/>
     <preference name="DisallowOverscroll" value="true"/>
     <preference name="android-minSdkVersion" value="14"/>
     

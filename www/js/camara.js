@@ -16,7 +16,6 @@ var app = {
     takePhoto: function(){
 		navigator.camera.getPicture(app.onPhotoDataSuccess, app.onFail, { 
 			quality: 20, 
-			allowEdit: true,
 			destinationType: navigator.camera.DestinationType.DATA_URL,
 			encodingType: navigator.camera.EncodingType.JPEG,
 			saveToPhotoAlbum:true
@@ -24,10 +23,6 @@ var app = {
 	},
  
     onPhotoDataSuccess: function(imageData) {
-		 		//$(imageCameraClicked).attr("src", imageData);
-
-        //photo.style.display = 'block';
-
 		var photo;
 		if(imageCameraClicked == 1){
 			photo = document.getElementById('fotoEdit_img1');
