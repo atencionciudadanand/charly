@@ -32,7 +32,7 @@ $( document ).on( "pageinit", "#servicios", function(e,data) {
          //FUNCION DIBUJAR MAPa
 	function MuestraMapa(latlng) {
 
-		//Asignación del longitud y latitud para la persistencia de la ubicación.
+		//Asignaci&oacute;n del longitud y latitud para la persistencia de la ubicaci&oacute;n.
 		sessionStorage.setItem("latlng", latlng);
 		
 		var myOptions = {
@@ -84,6 +84,9 @@ function getIdSelect(v){
 }
 
 function getFails(v) {
+
+        $("#selFallas").empty();
+
 		$.ajax({
 		url:"http://189.210.245.211:7080/WSAtnCiu/getFallas/" + v,
 		type:"GET",
@@ -112,10 +115,12 @@ function sendReport(){
                   padStr(1 + fecha.getMonth()) + "-" +
                   padStr(fecha.getDate());
 	var descripcion = $( "#textArea" ).val();
+	
+	var usuarioId = sessionStorage.getItem("IdUsuario");
 
     var contact = 	'{'+
-					'"rpcFolioReporte":"FOL001",'+
-					'"rpcIdUsuario":15,'+
+					'"rpcFolioReporte":"",'+
+					'"rpcIdUsuario":{"usuarioId":'+usuarioId+'},'+
 					'"rpcIdServicio":{'+'"servicioId":'+idServicio+'},'+
 					'"rpcGps":"'+GPS+'",'+
 					'"rpcIdEstatusServ":{'+'"estIdEstatus":'+1+'},'+
@@ -133,9 +138,10 @@ function sendReport(){
         data: contact.toString(),
         dataType: "json",
         success: function (data, status, jqXHR) {
-            alert("Exito: Su reporte se a enviado correctamente");
+            alert("Éxito: Su reporte se ha enviado correctamente");
             window.location.href ="#home";
-			alerId = data[0].alertId;
+            window.location.reload();
+			alerId = data.alertId;
 			codificarIMGtoBase64();
         },
         error: function (data, jqXHR, status) {
@@ -148,18 +154,29 @@ function sendReport(){
     });
 }
 
+function cancelReport(){
+    window.location.href ="#home";
+    window.location.reload();
+}
+
 function codificarIMGtoBase64(){
 	var imgOriginal = JSON.stringify('iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAIElEQVRoge3BAQEAAACCIP+vbkhAAQAAAAAAAAAAwKMBJ0IAAWSOMT4AAAAASUVORK5CYII=');
-	
-	var imgElem = document.getElementById('fotoEdit_img1');
+
+    // Mostrar div mediante ID
+    $('#fotoEdit2').show();
+
+	var imgElem = document.getElementById('fotoEdit_img1Env');
 	var imgData = JSON.stringify(getBase64Image(imgElem));
-	var imgElem1 = document.getElementById('fotoEdit_img2');
+	var imgElem1 = document.getElementById('fotoEdit_img2Env');
 	var imgData1 = JSON.stringify(getBase64Image(imgElem1));
-	var imgElem2 = document.getElementById('fotoEdit_img3');
+	var imgElem2 = document.getElementById('fotoEdit_img3Env');
 	var imgData2 = JSON.stringify(getBase64Image(imgElem2));
-	var imgElem3 = document.getElementById('fotoEdit_img4');
+	var imgElem3 = document.getElementById('fotoEdit_img4Env');
 	var imgData3 = JSON.stringify(getBase64Image(imgElem3));
-	
+
+    // Ocultar div mediante ID
+    $('#fotoEdit2').hide();
+
 	var fecha = new Date();
     var fechaAlt = padStr(fecha.getFullYear()) + "-" +
                   padStr(1 + fecha.getMonth()) + "-" +
@@ -205,7 +222,7 @@ function codificarIMGtoBase64(){
 			'"arcFechaAlta":"2016-10-18",'+
 			'"arcUsuAlta":2,'+
 			'"arcEstatus":1,'+
-			'"archivoStr":'+imgData+
+			'"archivoStr":'+imgData1+
 			'}';
 		
 		jQuery.ajax({
@@ -226,7 +243,7 @@ function codificarIMGtoBase64(){
 	
 	if(imgOriginal != imgData2){
 		var contact = '{'+
-			'"arcNombre":"Imagen 1",'+
+			'"arcNombre":"Imagen 3",'+
 			'"arcTipoDocto":"JPG",'+
 			'"arcIdRelUsuCatServ":	{'+
 										'"rpcIdusucatser":'+alerId+
@@ -234,7 +251,7 @@ function codificarIMGtoBase64(){
 			'"arcFechaAlta":"2016-10-18",'+
 			'"arcUsuAlta":2,'+
 			'"arcEstatus":1,'+
-			'"archivoStr":'+imgData+
+			'"archivoStr":'+imgData2+
 			'}';
 		
 		jQuery.ajax({
@@ -255,7 +272,7 @@ function codificarIMGtoBase64(){
 	
 	if(imgOriginal != imgData3){
 		var contact = '{'+
-			'"arcNombre":"Imagen 1",'+
+			'"arcNombre":"Imagen 4",'+
 			'"arcTipoDocto":"JPG",'+
 			'"arcIdRelUsuCatServ":	{'+
 										'"rpcIdusucatser":'+alerId+
@@ -263,7 +280,7 @@ function codificarIMGtoBase64(){
 			'"arcFechaAlta":"2016-10-18",'+
 			'"arcUsuAlta":2,'+
 			'"arcEstatus":1,'+
-			'"archivoStr":'+imgData+
+			'"archivoStr":'+imgData3+
 			'}';
 		
 		jQuery.ajax({
@@ -293,3 +310,37 @@ function getBase64Image(imgElem) {
 	   var dataURL = canvas.toDataURL("image/png");
 	   return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
 	}
+
+function guardarUbicacionEmergencia()
+{
+    var IdUsuario = sessionStorage.getItem("IdUsuario");
+    var f = new Date();
+    var fechaActual = f.getFullYear() + '-' + f.getMonth() + '-' + f.getDate();
+    var idEmergencia = sessionStorage.getItem("idEmergencia");
+    var coordenadas = sessionStorage.getItem("coordenadas");
+    var emergencia = '{' +
+        '"remGps" : "' + coordenadas + '", ' +
+        '"remFechaAlta" : "' + fechaActual + '", ' +
+        '"remUsuAlta" : ' + IdUsuario + ', ' +
+        '"remEstatus" : 1, ' +
+        '"remIdUsuario" : {' +
+            '"usuarioId" : ' + IdUsuario +
+        '}, ' +
+        '"remIdEmergencia" : {' +
+            '"emgIdEmergencia" : ' + idEmergencia +
+        '}' +
+    '}';
+    jQuery.ajax({
+			type: "POST",
+			url: "http://189.210.245.211:7080/WSAtnCiu/insertarDatosBotonPanico",
+			data: emergencia.toString(),
+			contentType: "application/json; charset=utf-8",
+			dataType: "json",
+			success: function (data, status, jqXHR) {
+				//success
+			},
+			error: function (jqXHR, status) {
+				//error
+			}
+		});	
+}

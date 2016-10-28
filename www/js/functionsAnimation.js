@@ -39,15 +39,21 @@ function llamar(entidad)
 {
 	switch(entidad)
 	{
-		case 1: location.href='tel:5540674021';
+		case 1: location.href='tel:5570512853';
 		break;
-		case 2: location.href='tel:5573461063';
+		case 2: location.href='tel:5570512853';
 		break;
-		case 3: location.href='tel:5523805851';
+		case 3: location.href='tel:5570512853';
 		break;
 	}
-    mostrarBtnTerminarEmergencia();
-	location.href = '#paginaMapa';
+    //mostrarBtnTerminarEmergencia();
+    sessionStorage.setItem("idEmergencia", entidad);
+	//location.href = '#paginaMapa';
+    obtenerCoordenadas();
+    setTimeout(function(){ 
+        guardarUbicacionEmergencia();
+    }, 3000);
+    
 }
 
 function muestraMenu()
@@ -81,6 +87,7 @@ function ocultarMenuArray()
                     item.removeEventListener("animationend",ocultarMenu,false);
                     item.style.display = 'none';
                  });
+    
 }
 
 function ocultarMenu(e)

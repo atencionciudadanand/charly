@@ -1,3 +1,4 @@
+//var coordenadasg;
 $( document ).on( "pageinit", "#paginaMapa", function(e,data) {
 
     var defaultPos = new google.maps.LatLng(19.289168, -99.653440);
@@ -51,3 +52,20 @@ $( document ).on( "pageinit", "#paginaMapa", function(e,data) {
 	}// Fin muestra mapa
 
 });
+
+function obtenerCoordenadas() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else { 
+        alert("Error al obtener las coordenadas");
+        sessionStorage.setItem("coordenadas", "error");
+    }
+}
+
+function showPosition(position) {
+    var coordenadas = position.coords.latitude + ',' + position.coords.longitude;
+    //coordenadasg = coordenadas;
+    console.log("coordenadas: ");
+    console.log(coordenadas);
+    sessionStorage.setItem("coordenadas", coordenadas);
+}

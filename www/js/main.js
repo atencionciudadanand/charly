@@ -4,8 +4,8 @@ function validaLogin(){
     var flPass = $("#text-PassLogin").val();
     if(flEmail != "" && flPass != ""){
         re= /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/
-        if(!re.exec(flEmail)){
-         alert("Error: La dirección de correo " + flEmail + " es incorrecta.");
+		if(!re.exec($.trim(flEmail)) || $.trim(flPass).length < 6){
+         alert("Error: Favor de validar sus datos");
         }else{
             jQuery.ajax({
                 type: "GET",
@@ -13,18 +13,22 @@ function validaLogin(){
                 url: "http://189.210.245.211:7080/WSAtnCiu/getUserByNameAndPass/" + flEmail + "/" + flPass,
                 dataType: "json",
                 success: function (data, jqXHR, status) {
-                    console.log("data: " + data);
                     if(data != null){
-                        alert("Exito: Acceso correcto");
-                        sessionStorage.setItem("IdUsuario", data.usuarioId);
-                        window.location.href ="#home";
-                    }else{
-                        alert("Error: El usuario o contraseña no es valido");
-                        window.location.href ="#login";
+						if(data.estatus == 1000){
+							alert("Error: Usuario o contraseña incorrectas, favor de verificar datos");
+							window.location.href ="#login";
+						}else if(data.estatus == 1001){
+							alert("Error: No se obtuvo respuesta del servidor. Favor de intentar más tarde");
+							window.location.href ="#acceso";
+						}else {
+							alert("Éxito: Acceso correcto");
+							sessionStorage.setItem("IdUsuario", data.usuarioId);
+							window.location.href ="#home";
+						}
                     }
                 },
                 error: function (data, jqXHR, status) {
-                    alert("Error: No se obtubo respuesta del servidor. Favor de intentar mas tarde");
+                    alert("Error: No se obtuvo respuesta del servidor. Favor de intentar más tarde");
                     window.location.href ="#acceso";
                 },
                 done: function (e) {
@@ -139,7 +143,7 @@ function guardaPriv(){
         data: contact.toString(),
         dataType: "json",
         success: function (data, status, jqXHR) {
-            alert("Exito: Registro Exitoso");
+            alert("Éxito: Registro Exitoso");
             window.location.href ="#login";
         },
         error: function (data, jqXHR, status) {
@@ -160,6 +164,11 @@ function padStr(i) {
 function exitTermAcces(){
     removeItemReg(1,1);
     window.location.href ="#acceso";
+}
+
+function exitAviso(){
+    window.location.href ="#home";
+    window.location.reload();
 }
 
 function exitReportes(obj){
@@ -199,7 +208,7 @@ function cargaReportes(){
                 mostrarReportes(flDatos);
             },
             error: function (data, jqXHR, status) {
-                alert("Error: No se obtubo respuesta del servidor.");
+                alert("Error: No se obtuvo respuesta del servidor.");
                 console.log("data: " + data);
                 window.location.href ="#home";
             },
@@ -226,11 +235,22 @@ function mostrarReportes(vlDatos){
         flStatus=regFila.rpcIdEstatusServ.estDescripcion;
         flServicio=regFila.rpcIdServicio.padreId.descripcion;
         flFalla = regFila.rpcIdServicio.descripcion;
+
         if(flStatus == "Registrado"){
-            var color = "#088A08"
+            var color = "#DF0101"
+        }
+        if(flStatus == "Sin iniciar"){
+            var color = "#DF0101"
+        }
+        if(flStatus == "En proceso"){
+            var color = "#DF7401"
+        }
+        if(flStatus == "Atendido"){
+            var color = "#04B404"
         }
 
-        tablaDatos.append("<tr><td><td><strong>Reporte: </strong></td><td>"+flFolio+"</td></td></tr>"
+        tablaDatos.append("<tr name='showCheck' style='display:none'><td rowspan='4'><input type='checkbox'></td></tr>"
+						+ "<tr><td><td><strong>Reporte: </strong></td><td>"+flFolio+"</td></td></tr>"
                         + "<tr><td><td><strong>Servicio: </strong></td><td>"+flServicio+"</td> <td></td> <td style='color:"+color+"'><strong>"+flStatus+"</strong></td></td></tr>"
                         + "<tr><td><td><strong>Falla: </strong></td><td>"+flFalla+"</td></td></tr>");
     }
@@ -247,6 +267,10 @@ function logOut(){
     window.location.reload();
 }
 
+function showCheck(){
+	$("showCheck").display = 'block';
+	$("#btnEliminar").display = 'block';
+}
 /*
                 var folio = data[0].rpcFolioReporte;
                 var StatusReporte = data[0].rpcIdEstatusServ;
