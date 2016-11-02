@@ -138,14 +138,13 @@ function sendReport(){
         data: contact.toString(),
         dataType: "json",
         success: function (data, status, jqXHR) {
-            alert("Éxito: Su reporte se ha enviado correctamente");
-            window.location.href ="#home";
-            window.location.reload();
-			alerId = data.alertId;
-			codificarIMGtoBase64();
+            alert("Éxito: Su reporte se ha enviado correctamente");          
+		alerId = data.alertId;
+		codificarIMGtoBase64();
+		window.location.href ="#home"; 
         },
         error: function (data, jqXHR, status) {
-			alert("Error: intente de nuevo mas tarde");
+			alert("Error: Intente de nuevo más tarde");
             window.location.href ="#servicios";
         },
         done: function (e) {
@@ -165,14 +164,20 @@ function codificarIMGtoBase64(){
     // Mostrar div mediante ID
     $('#fotoEdit2').show();
 
-	var imgElem = document.getElementById('fotoEdit_img1Env');
-	var imgData = JSON.stringify(getBase64Image(imgElem));
+    var imgElem = document.getElementById('fotoEdit_img1Env');
+    var imgData = JSON.stringify(getBase64Image(imgElem, 250));
+
+
 	var imgElem1 = document.getElementById('fotoEdit_img2Env');
-	var imgData1 = JSON.stringify(getBase64Image(imgElem1));
+    var imgData1 = JSON.stringify(getBase64Image(imgElem1, 250));
+
+
 	var imgElem2 = document.getElementById('fotoEdit_img3Env');
-	var imgData2 = JSON.stringify(getBase64Image(imgElem2));
+    var imgData2 = JSON.stringify(getBase64Image(imgElem2, 250));
+
+
 	var imgElem3 = document.getElementById('fotoEdit_img4Env');
-	var imgData3 = JSON.stringify(getBase64Image(imgElem3));
+	var imgData3 = JSON.stringify(getBase64Image(imgElem3, 250));
 
     // Ocultar div mediante ID
     $('#fotoEdit2').hide();
@@ -300,16 +305,22 @@ function codificarIMGtoBase64(){
 	}
 }
 
-function getBase64Image(imgElem) {
-	// imgElem must be on the same server otherwise a cross-origin error will be thrown "SECURITY_ERR: DOM Exception 18"
-	   var canvas = document.createElement("canvas");
-	   canvas.width = imgElem.clientWidth;
-	   canvas.height = imgElem.clientHeight;
-	   var ctx = canvas.getContext("2d");
-	   ctx.drawImage(imgElem, 0, 0);
-	   var dataURL = canvas.toDataURL("image/png");
-	   return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
-	}
+function getBase64Image(imgElem, newWidth) {
+   var oc = document.createElement('canvas'), octx = oc.getContext('2d');
+   oc.width = imgElem.width;
+   oc.height = imgElem.height;
+   octx.drawImage(imgElem, 0, 0);
+   while (oc.width * 0.5 > newWidth) {
+     oc.width *= 0.5;
+     oc.height *= 0.5;
+     octx.drawImage(oc, 0, 0, oc.width, oc.height);
+   }
+   oc.width = newWidth;
+   oc.height = oc.width * imgElem.height / imgElem.width;
+   octx.drawImage(imgElem, 0, 0, oc.width, oc.height);
+   var dataURL = oc.toDataURL("image/png");
+   return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+}
 
 function guardarUbicacionEmergencia()
 {
@@ -320,7 +331,6 @@ function guardarUbicacionEmergencia()
     var coordenadas = sessionStorage.getItem("coordenadas");
     var emergencia = '{' +
         '"remGps" : "' + coordenadas + '", ' +
-        '"remFechaAlta" : "' + fechaActual + '", ' +
         '"remUsuAlta" : ' + IdUsuario + ', ' +
         '"remEstatus" : 1, ' +
         '"remIdUsuario" : {' +

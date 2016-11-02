@@ -58,12 +58,14 @@ function obtenerCoordenadas() {
         navigator.geolocation.getCurrentPosition(showPosition);
     } else { 
         alert("Error al obtener las coordenadas");
-        sessionStorage.setItem("coordenadas", "error");
+        sessionStorage.setItem("coordenadas", "Error!");
     }
 }
 
 function showPosition(position) {
     var coordenadas = position.coords.latitude + ',' + position.coords.longitude;
+    if(coordenadas == null)
+        coordenadas = "Error!";
     //coordenadasg = coordenadas;
     console.log("coordenadas: ");
     console.log(coordenadas);

@@ -1,4 +1,5 @@
 var imageCameraClicked;
+
 function validaLogin(){
     var flEmail = $("#text-CorreoLogin").val();
     var flPass = $("#text-PassLogin").val();
@@ -15,12 +16,15 @@ function validaLogin(){
                 success: function (data, jqXHR, status) {
                     if(data != null){
 						if(data.estatus == 1000){
-							alert("Error: Usuario o contraseña incorrectas, favor de verificar datos");
+							alert("Error: Contraseña incorrecta, favor de verificar datos");
 							window.location.href ="#login";
 						}else if(data.estatus == 1001){
 							alert("Error: No se obtuvo respuesta del servidor. Favor de intentar más tarde");
 							window.location.href ="#acceso";
-						}else {
+						}else if(data.estatus == 1002){
+                            alert("Error: El Usuario no existe, favor de verificar datos");
+							window.location.href ="#login";
+                        }else{
 							alert("Éxito: Acceso correcto");
 							sessionStorage.setItem("IdUsuario", data.usuarioId);
 							window.location.href ="#home";
@@ -191,72 +195,6 @@ function removeItemReg(idRegistro,idCReportes){
     }
 }
 
-function cargaReportes(){
-    var js = '{"idUsuario": 2}';
-    var idUser = sessionStorage.getItem("IdUsuario");
-    jQuery.ajax({
-            type: "GET",
-            contentType: "application/json; charset=utf-8",
-            url: "http://189.210.245.211:7080/WSAtnCiu/getRelPerSerByIdUser/" + idUser,
-            data: js.toString(),
-            dataType: "json",
-            success: function (data, jqXHR, status) {
-                removeItemReg(0,1);
-                var flDatos = data;
-                sessionStorage.setItem("Datos", flDatos);
-                window.location.href ="#reportes";
-                mostrarReportes(flDatos);
-            },
-            error: function (data, jqXHR, status) {
-                alert("Error: No se obtuvo respuesta del servidor.");
-                console.log("data: " + data);
-                window.location.href ="#home";
-            },
-            done: function (e) {
-                console.log("DONE");
-            }
-    });
-}
-
-function mostrarReportes(vlDatos){
-    //var flDatos = sessionStorage.getItem("Datos");
-    var flDatos = vlDatos;
-    var tablaDatos= $("#tblDatos");
-
-    var flFolio="";
-    var flStatus="";
-    var flServicio="";
-    var flFalla="";
-
-    for(i=0; i<flDatos.length;i++){
-        var regFila = flDatos[i];
-
-        flFolio=regFila.rpcFolioReporte;
-        flStatus=regFila.rpcIdEstatusServ.estDescripcion;
-        flServicio=regFila.rpcIdServicio.padreId.descripcion;
-        flFalla = regFila.rpcIdServicio.descripcion;
-
-        if(flStatus == "Registrado"){
-            var color = "#DF0101"
-        }
-        if(flStatus == "Sin iniciar"){
-            var color = "#DF0101"
-        }
-        if(flStatus == "En proceso"){
-            var color = "#DF7401"
-        }
-        if(flStatus == "Atendido"){
-            var color = "#04B404"
-        }
-
-        tablaDatos.append("<tr name='showCheck' style='display:none'><td rowspan='4'><input type='checkbox'></td></tr>"
-						+ "<tr><td><td><strong>Reporte: </strong></td><td>"+flFolio+"</td></td></tr>"
-                        + "<tr><td><td><strong>Servicio: </strong></td><td>"+flServicio+"</td> <td></td> <td style='color:"+color+"'><strong>"+flStatus+"</strong></td></td></tr>"
-                        + "<tr><td><td><strong>Falla: </strong></td><td>"+flFalla+"</td></td></tr>");
-    }
-
-}
-
 function addClassImagePhoto(e){
     imageCameraClicked=e;
 }
@@ -267,10 +205,6 @@ function logOut(){
     window.location.reload();
 }
 
-function showCheck(){
-	$("showCheck").display = 'block';
-	$("#btnEliminar").display = 'block';
-}
 /*
                 var folio = data[0].rpcFolioReporte;
                 var StatusReporte = data[0].rpcIdEstatusServ;
