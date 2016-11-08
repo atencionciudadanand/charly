@@ -30,8 +30,6 @@
     <plugin name="cordova-plugin-vibration" source="npm" spec="~2.1.0"/>
     <plugin name="cordova-plugin-whitelist" source="npm" spec="~1.2.1"/>
 	
-	<plugin name="cordova-plugin-diagnostic" source="npm" spec="~3.3.2"/>
-	
     <icon src="www/img/logo_bco.png"/>
     <access origin="*"/>
     <allow-intent href="http://*/*"/>
