@@ -1,12 +1,6 @@
 var arrayReports = [];
 var idReport;
 
-$(document).ready( function() {
-	setInterval(function() {
-		$('#dvdDatos').load("index.html #dvdDatos");
-	}, 1000);
-});
-
 function showCheck(){
 	$("#btnSeleccionar").hide();
 	$("#btnEliminar").show();
@@ -24,8 +18,8 @@ function cargaReportes(){
     jQuery.ajax({
             type: "GET",
             contentType: "application/json; charset=utf-8",
-            url: "http://192.168.0.5:8080/WSAtnCiu/getRelPerSerByIdUser/" + idUser,
-			//url: "http://189.210.245.211:7080/WSAtnCiu/getRelPerSerByIdUser/" + idUser,
+            //url: "http://192.168.0.5:8080/WSAtnCiu/getRelPerSerByIdUser/" + idUser,
+	    url: "http://189.210.245.211:7080/WSAtnCiu/getRelPerSerByIdUser/" + idUser,
             data: js.toString(),
             dataType: "json",
             success: function (data, jqXHR, status) {
@@ -91,10 +85,12 @@ function mostrarReportes(vlDatos){
         if(flStatus == "Atendido"){
             var color = "#04B404"
         }
-        tablaDatos.append("<tr style='display:none' class='hide'><td rowspan='4' ><input name='chReports' type='checkbox' value='"+flIdReporte+"'></td></tr>"
-						+ "<tr><td><td><strong>Reporte: </strong></td><td>"+flFolio+"</td></td></tr>"
-                        + "<tr><td><td><strong>Servicio: </strong></td><td>"+flServicio+"</td> <td></td> <td style='color:"+color+"'><strong>"+flStatus+"</strong></td></td></tr>"
-                        + "<tr><td><td><strong>Falla: </strong></td><td>"+flFalla+"</td></td></tr>");
+        tablaDatos.append("<tr><td style='display:none' class='hide'><input name='chReports' type='checkbox' value='"+flIdReporte+"'></td>" 
+						+"<td> <table>"
+						+ "<tr><td></td><td><strong>Reporte: </strong></td><td>"+flFolio+"</td></tr>"
+                        + "<tr><td></td><td><strong>Servicio: </strong></td><td>"+flServicio+"</td> <td></td> <td style='color:"+color+"'><strong>"+flStatus+"</strong></td></tr>"
+                        + "<tr><td></td><td><strong>Falla: </strong></td><td>"+flFalla+"</td></tr>"
+						+"</table></td></tr>");
     }
 
 }
@@ -109,8 +105,8 @@ function deleteReports(){
 		jQuery.ajax({
 			type: "PUT",
 			contentType: "application/json; charset=utf-8",
-			url:"http://192.168.0.5:8080/WSAtnCiu/deleteReports/" + idReport,
-			//url:"http://189.210.245.211:7080/WSAtnCiu/deleteReports/" + idReport,
+			//url:"http://192.168.0.5:8080/WSAtnCiu/deleteReports/" + idReport,
+			url:"http://189.210.245.211:7080/WSAtnCiu/deleteReports/" + idReport,
 			data: jsStatusId.toString(),
 			dataType: "json",
 			success: function (data, status, jqXHR) {

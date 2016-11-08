@@ -1,15 +1,86 @@
-$(document).ready(function() {
+$( document ).on( "pageinit", "#servicios", function(e,data) {
+
+		var id, target, option;
+		
+		target = {
+		  latitude : 19.289168,
+		  longitude: -99.653440,
+		}
+
+		options = {
+		  enableHighAccuracy: true, //enableHighAccuracy: Se tratan de obtener los mejores resultados posible del GPS
+		  timeout: 5000, //timeout: el tiempo maximo que se espera para obtener la posicion en este caso 5 segundos
+		  maximumAge: 500000 //maximumAge- Guarda la posicion por 5 minutos
+		};
+		
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(success, error, options );
+			
+		function success(position) {
+			var crd = position.coords;
+			if (target.latitude != crd.latitude && target.longitude != crd.longitude) {//Valida que la latitud y la longitud sean diferentes de las establecidas por default
+				alert("function success if");
+				MuestraMapa(new google.maps.LatLng(crd.latitude, crd.longitude));
+			}else{
+				//navigator.geolocation.clearWatch(id);
+				alert("function success else");
+				//MuestraMapa(new google.maps.LatLng(target.latitude, target.longitude));
+			}
+		}
+		
+        function error(error) {
+			//si falla mostrar mpara en posicion por defecto
+			//alert('---code: '    + error.code    + '\n' + 'message: ' + error.message + '\n');
+			alert("function error");
+			MuestraMapa(new google.maps.LatLng(target.latitude, target.longitude));
+		}
+		
+		
+    }else {
+        //MuestraMapa(defaultPos);  // No soporta geolocalizacion y dibuja el mapa en posicion Default
+		alert("segundo else");
+		MuestraMapa(new google.maps.LatLng(target.coords.latitude, target.coords.longitude));
+	}
+
+         //FUNCION DIBUJAR MAPa
+	function MuestraMapa(latlng) {
+
+		//Asignaci&oacute;n del longitud y latitud para la persistencia de la ubicaci&oacute;n.
+		sessionStorage.setItem("latlng", latlng);
+		
+		var myOptions = {
+        zoom: 16,
+        center: latlng,
+        disableDefaultUI: true,
+        mapTypeId: google.maps.MapTypeId.ROADMAP};
+
+        var map = new google.maps.Map(document.getElementById("geoServicios"), myOptions);
+        var infowindow = new google.maps.InfoWindow({
+			position: latlng,
+			content: '<p>Tu posición actual</p>'+latlng
+		});
+
+        var marker = new google.maps.Marker({
+			position: latlng,
+            map: map,
+            title: "Mi posición",
+            animation: google.maps.Animation.DROP
+		});
+		
+		google.maps.event.addListener(marker, 'click', function() {infowindow.open(map,marker);});
+
+	}// Fin muestra mapa
+
+});
+
+/*$(document).ready(function() {
    $("#btnEliminar").hide();
    cargaReportes();
-});
+});*/
 
 function showCheck(){
 	$("#btnEliminar").show();
 	$(".hide").show();
-}
-
-function deleteReport(){
-	
 }
 
 function cargaReportes(){
@@ -226,3 +297,4 @@ function getBase64Image(imgElem) {
 function padStr(i) {
     return (i < 10) ? "0" + i : "" + i;
 }
+

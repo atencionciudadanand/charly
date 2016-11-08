@@ -11,6 +11,13 @@ $( document ).on( "pageinit", "#servicios", function(e,data) {
     var defaultPos = new google.maps.LatLng(19.289168, -99.653440);
 
     if (navigator.geolocation) {
+		
+        //maximumAge- Guarda la posicion por 5 minutos
+        //enableHighAccuracy: Se tratan de obtener los mejores resultados posible del GPS
+        //timeout: el tiempo maximo que se espera para obtener la posicion en este caso 5 segundos
+        var options = {maximumAge: 500000, enableHighAccuracy:true, timeout: 5000};
+		navigator.geolocation.getCurrentPosition(exito, falla, options );
+			
 		function exito(pos) {
 			MuestraMapa(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
 		}
@@ -18,12 +25,6 @@ $( document ).on( "pageinit", "#servicios", function(e,data) {
             //si falla mostrar mpara en posicion por defecto
                 MuestraMapa(defaultPos);
             }
-
-        //maximumAge- Guarda la posicion por 5 minutos
-        //enableHighAccuracy: Se tratan de obtener los mejores resultados posible del GPS
-        //timeout: el tiempo maximo que se espera para obtener la posicion en este caso 5 segundos
-            var options = {maximumAge: 500000, enableHighAccuracy:true, timeout: 5000};
-            navigator.geolocation.getCurrentPosition(exito, falla, options );
     }//FIN IF
 	else {
         MuestraMapa(defaultPos);  // No soporta geolocalizacion y dibuja el mapa en posicion Default
@@ -99,7 +100,7 @@ function getFails(v) {
         },
 
         error: function () {
-			console.dialog("Error: No se cargaron las fallas correctamente.");
+			
         }
 	})
 }
@@ -322,8 +323,7 @@ function getBase64Image(imgElem, newWidth) {
    return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
 }
 
-function guardarUbicacionEmergencia()
-{
+function guardarUbicacionEmergencia(){
     var IdUsuario = sessionStorage.getItem("IdUsuario");
     var f = new Date();
     var fechaActual = f.getFullYear() + '-' + f.getMonth() + '-' + f.getDate();

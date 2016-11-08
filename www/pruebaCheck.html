@@ -2,30 +2,33 @@
 <html>
 <head>
     <title>Servicios p&uacute;blicos</title>
+    <meta name="tipo_contenido"  content="text/html;" http-equiv="Content-Type" charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta HTTP-EQUIV="Content-Type" content="text/html; charset=iso-8859-1"/>
-    <link href="css/animation.css" rel="stylesheet" type="text/css"/>
     <link href="css/mapaGPS.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css"/>
     <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyB-QMbmhAEpNRE7Wb6CnfVnIC-L2AqZPFU"></script>
     <script type="text/javascript" charset="utf-8" src="./js/main.js"></script>
-	<script type="text/javascript" src="js/reportes.js"></script>
+    <script type="text/javascript" src="js/functionsAnimation.js"></script>
+	<script type="text/javascript" src="js/prueba.js"></script>
 </head>
 <body>
+<div data-role="page" id="servicios" data-url="map-page">
 
-        <div>
-            <table width="70%" border="0" align="center" cellpadding="0" cellspacing="0"
-                   class="tablaDatos" id="tblDatos">
-            </table>
-        </div>
-	
-        <div align="center">
-			<a data-role="button" data-theme="c" data-inline="true" style="width: 160px;" id="btnSeleccionar" onclick="showCheck()">Seleccionar</a>
-            <a data-role="button" data-theme="c" data-inline="true" style="width: 160px;" id="btnEliminar" onclick="deleteReports()">Eliminar</a>
-            <a data-role="button" data-theme="c" data-inline="true" style="width: 160px;" id="btnRegresar" href="javascript: cargaReportes();">Regresar</a>
-        </div>
+		<br/>
+		<div data-role="title">
+			<td><p style="text-align:center; color: #FF0000; font-size: 20px">Ubicaci&oacute;n</p></td>
+		</div>
+		<br/>
+		<div>
+			<div id="geoServicios" ></div>
+		</div>
+		<br/>
+
+	</div>
+</div>	
 </body>
 </html>

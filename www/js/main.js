@@ -3,7 +3,7 @@ var imageCameraClicked;
 function validaLogin(){
     var flEmail = $("#text-CorreoLogin").val();
     var flPass = $("#text-PassLogin").val();
-    if(flEmail != "" && flPass != ""){
+    if(validaAcceso()){
         re= /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/
 		if(!re.exec($.trim(flEmail)) || $.trim(flPass).length < 6){
          alert("Error: Favor de validar sus datos");
@@ -40,9 +40,31 @@ function validaLogin(){
                 }
             });
         }
-    }else{
-     alert("Error: Los campos con * son obligatorios.");
     }
+}
+
+function validaAcceso()
+{
+    var flEmail = $("#text-CorreoLogin").val().trim();
+    var flPass = $("#text-PassLogin").val();
+    if(flEmail == "" || flEmail == null)
+    {
+        alert("El campo de Correo electrónico no puede ser vacío");
+        return false;
+    }else{
+        for(var i = 0; flEmail.length > i; i++)
+        {
+            if(isSpacing(flEmail.charCodeAt(i))){
+                alert("No se permiten espacios en el campo de Correo electrónico");
+                return false;
+            }
+        }
+    }
+    if(flPass == "" || flPass == null){
+        alert("El campo de Contraseña no puede ser vacío");
+        return false;
+    }
+    return true;
 }
 
 function guardaReg(){
@@ -54,7 +76,7 @@ function guardaReg(){
     var aPaterno = $("#text-APaterno").val();
     var aMaterno = $("#text-AMaterno").val();
     var numCel = $("#text-Cel").val();
-    if(email != "" && clave != "" && claveConfirma != "" && nombreUser != "" && aPaterno != "" && aMaterno != "" && numCel != ""){
+    if(validaRegistro()){
         re= /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/
         if(!re.exec(email))    {
             alert("Error: La dirección de correo " + email + " es incorrecta.");
@@ -97,9 +119,114 @@ function guardaReg(){
                 }
             });
         }
-    }else {
-        alert("Error: Los campos con * son obligatorios.");
     }
+}
+
+function validaRegistro()
+{
+    var email = $("#text-CorreoReg").val().trim();
+    var clave = $("#text-PassReg").val().trim();
+    var claveConfirma = $("#text-CPassReg").val().trim();
+    var nombre = $("#text-Nombre").val().trim();
+    var aPaterno = $("#text-APaterno").val().trim();
+    var aMaterno = $("#text-AMaterno").val().trim();
+    var numCel = $("#text-Cel").val().trim();
+    for(var i = 0; nombre.length > i; i++)
+        {
+            console.log(nombre.charCodeAt(i));
+            
+        }
+    //valida que el campo nombre no este vacío, ni contenga signos de puntuacion, y que no contenga numeros
+    if(nombre == "" || nombre == null)
+    {
+        alert("El campo Nombre no puede ser vacío");
+        return false;
+    }else{
+        for(var i = 0; nombre.length > i; i++)
+        {
+            if(!justCharacter(nombre.charCodeAt(i),1))
+            {
+                alert("Solo se permiten letras en el campo Nombre");
+                return false;
+            }
+        }
+    }
+    //valida que el campo apellido parterno no contenga numeros, ni signos de puntuacion, ni espacios
+    if(aPaterno == "" || aPaterno == null)
+    {
+        alert("El campo Apellido paterno no puede ser vacío");
+        return false;
+    }else{
+        for(var i = 0; aPaterno.length > i; i++)
+        {
+            if(!justCharacter(aPaterno.charCodeAt(i),0))
+            {
+                alert("Solo se permiten letras y sin espacios en el campo Apellido paterno");
+                return false;
+            }
+        }
+    }
+    //valida que el campo apellido marterno no contenga numeros, ni signos de puntuacion, ni espacios
+    if(aMaterno == "" || aMaterno == null)
+    {
+        alert("El campo Apellido materno no puede ser vacío");
+        return false;
+    }else{
+        for(var i = 0; aMaterno.length > i; i++)
+        {
+            if(!justCharacter(aMaterno.charCodeAt(i),0))
+            {
+                alert("Solo se permiten letras y sin espacios en el campo Apellido materno");
+                return false;
+            }
+        }
+    }
+    //valida que el campo correo electronico no contenga, espacios
+    if(email == "" || email == null)
+    {
+        alert("El campo Apellido materno no puede ser vacío");
+        return false;
+    }else{
+        for(var i = 0; email.length > i; i++)
+        {
+            if(isSpacing(email.charCodeAt(i)))
+            {
+                alert("No se permiten espacios en el campo Correo electrónico");
+                return false;
+            }
+        }
+    }
+    //valida que los campo de contraseña no sean vacíos y que coincidan
+    if(clave == "" || clave == null)
+    {
+        alert("El campo de la contraseña no puede ser vacío");
+        return false;
+    }else{
+        if(clave.length < 6){
+            alert("El campo de la contraseña debe ser de 6 caracteres");
+            return false;
+        }
+        if(claveConfirma == "" || claveConfirma == null){
+            alert("Confirme su contraseña");
+            return false;
+        }
+        if(clave != claveConfirma){
+            alert("Las contraseñas no coinciden, favor de verificar");
+            return false;
+        }
+    }
+    //valida que el campo Celular no sea vacío y que contenga los 10 digitos
+    if(numCel == "" || numCel == null)
+    {
+        alert("El campo de Celular no puede ser vacío");
+        return false;
+    }else{
+        if(numCel.length < 10){
+            alert("Introduzca los diez dígitos del campo Celular");
+            return false;
+        }
+    }
+    return true;
 }
 
 function guardaTerm(){

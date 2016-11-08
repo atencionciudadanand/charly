@@ -97,7 +97,7 @@
         <div align="justify">
             <form action="" method="get">
                 <label for="text-CorreoLogin">* Correo electr&oacute;nico:</label>
-                <input name="text-basic" id="text-CorreoLogin" value="" type="email" onkeypress="return !isSpacing(event);" required>
+                <input name="text-basic" id="text-CorreoLogin" value="" type="email" required>
                 <label for="text-PassLogin" >* Contrase&ntilde;a:</label>
                 <input name="text-basic" id="text-PassLogin" value="" type="password" maxlength="6" required>
             </form>
@@ -155,21 +155,19 @@
     <div data-role="content" style="background-color: #ffffff;">
         <form action="" method="get">
             <label for="text-Nombre">* Nombre(s):</label>
-            <input name="text-basic" id="text-Nombre" value="" type="text" onkeypress="return justCharacter(event,1);" required>
+            <input name="text-basic" id="text-Nombre" value="" type="text" required>
             <label for="text-APaterno">* Apellido paterno:</label>
-            <input name="text-basic" id="text-APaterno" value="" type="text" onkeypress="return justCharacter(event,0);" required>
+            <input name="text-basic" id="text-APaterno" value="" type="text" required>
             <label for="text-AMaterno">* Apellido materno:</label>
-            <input name="text-basic" id="text-AMaterno" value="" type="text" onkeypress="return justCharacter(event,0);" required>
+            <input name="text-basic" id="text-AMaterno" value="" type="text" required>
             <label for="text-CorreoReg">* Correo electr&oacute;nico:</label>
-            <input name="text-basic" id="text-CorreoReg" value="" type="email" onkeypress="return !isSpacing(event);" required>
+            <input name="text-basic" id="text-CorreoReg" value="" type="email" required>
             <label for="text-PassReg">* Contrase&ntilde;a:</label>
-            <input name="text-basic" id="text-PassReg" value="" type="password" maxlength="6"
-                   required>
+            <input name="text-basic" id="text-PassReg" value="" type="password" maxlength="6" required>
             <label for="text-CPassReg">* Confirma contrase&ntilde;a:</label>
-            <input name="text-basic" id="text-CPassReg" value="" type="password" maxlength="6"
-                   required>
+            <input name="text-basic" id="text-CPassReg" value="" type="password" maxlength="6" required>
             <label for="text-Cel">* Celular (10 d&iacute;gitos):</label>
-            <input name="text-basic" id="text-Cel" value="" type="text" size="10" maxlength="10" onkeypress="return justNumbers(event);" required>
+            <input name="text-basic" id="text-Cel" value="" type="tel" size="10" maxlength="10" required>
             <div align="center">
                 <!--<button id="button_validaReg" onclick="guardaReg()" data-theme="c" style="width: 160px;">Siguiente</button>-->
                 <a href="javascript: guardaReg();" data-role="button" data-theme="c"
@@ -491,7 +489,7 @@
     <div data-role="header">
         <h1>Tu posici&oacute;n actual</h1>
     </div>
-    <div id="map-canvas"></div>-
+    <div id="map-canvas"></div>
 
     <div id="terminarEmergencia" align="center">
        <a href="" data-role="button" onclick="refrescarHome()">Terminar Emergencia</a>
@@ -506,7 +504,7 @@
             <div name = "desplegable" class="desplegable">
                 <ul>
                     <li><a href="#servicios" onclick="ocultarMenuArray();">Servicios</a></li>
-                    <li><a href="javascript: cargaReportes();" onclick="ocultarMenuArray()">Mis reportes</a></li>
+                    <li><a href="javascript: cargaReportes();" onclick="ocultarMenuArray(); cargaReportes()">Mis reportes</a></li>
                     <li><a href="" onclick="ocultarMenuArray()">Instrucciones</a></li>
                     <li><a href="#terminos2" onclick="ocultarMenuArray()">T&eacute;rminos y condiciones</a></li>
                     <li><a href="#datosPersonales2" onclick="ocultarMenuArray()">Ley de protecci&oacute;n de datos personales</a></li>
@@ -606,7 +604,7 @@
         <div name = "desplegable" class="desplegable">
             <ul>
                 <li><a href="#servicios" onclick="ocultarMenuArray();">Servicios</a></li>
-                <li><a href="javascript: cargaReportes();" onclick="ocultarMenuArray()">Mis reportes</a></li>
+                <li><a href="javascript: cargaReportes();" onclick="ocultarMenuArray(); cargaReportes()">Mis reportes</a></li>
                 <li><a href="" onclick="ocultarMenuArray()">Instrucciones</a></li>
                 <li><a href="#terminos2" onclick="ocultarMenuArray()">T&eacute;rminos y condiciones</a></li>
                 <li><a href="#datosPersonales2" onclick="ocultarMenuArray()">Ley de protecci&oacute;n de datos personales</a></li>
@@ -652,7 +650,7 @@
         <div name = "desplegable" class="desplegable">
             <ul>
                 <li><a href="#servicios" onclick="ocultarMenuArray();">Servicios</a></li>
-                <li><a href="" onclick="ocultarMenuArray(); cargaReportes()">Mis reportes</a></li>
+                <li><a href="javascript: cargaReportes();" onclick="ocultarMenuArray(); cargaReportes()">Mis reportes</a></li>
                 <li><a href="" onclick="ocultarMenuArray()">Instrucciones</a></li>
                 <li><a href="#terminos2" onclick="ocultarMenuArray()">T&eacute;rminos y condiciones</a></li>
                 <li><a href="#datosPersonales2" onclick="ocultarMenuArray()">Ley de protecci&oacute;n de datos personales</a></li>
@@ -679,6 +677,8 @@
             </table>
         </div>
         <div align="center">
+			<br/>
+			<br/>
 			<a data-role="button" data-theme="c" data-inline="true" style="width: 160px;" id="btnSeleccionar" onclick="showCheck()">Seleccionar</a>
             <a data-role="button" data-theme="c" data-inline="true" style="width: 160px;" id="btnEliminar" onclick="deleteReports()">Eliminar</a>
             <a data-role="button" data-theme="c" data-inline="true" style="width: 160px;" id="btnRegresar" href="javascript: cargaReportes();">Regresar</a>
